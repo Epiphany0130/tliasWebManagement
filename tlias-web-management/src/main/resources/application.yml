@@ -12,4 +12,4 @@ datasource:
 #Mybatis的相关配置
 mybatis:
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdoutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
