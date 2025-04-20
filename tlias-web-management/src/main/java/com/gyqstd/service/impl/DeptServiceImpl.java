@@ -1,7 +1,12 @@
 package com.gyqstd.service.impl;
 
+import com.gyqstd.mapper.DeptMapper;
+import com.gyqstd.pojo.Dept;
 import com.gyqstd.service.DeptService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author GuYuqi
@@ -9,4 +14,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DeptServiceImpl implements DeptService {
+
+    @Autowired
+    private DeptMapper deptMapper;
+
+    @Override
+    public List<Dept> findAll() {
+        return deptMapper.findAll();
+    }
 }
