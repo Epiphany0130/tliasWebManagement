@@ -45,6 +45,9 @@
   <component name="MavenRunner">
     <option name="jreName" value="corretto-17" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
   "associatedIndex": 0
@@ -121,7 +124,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745125311982</updated>
-      <workItem from="1745125313155" duration="5107000" />
+      <workItem from="1745125313155" duration="5540000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -147,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745129809978</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="查询全部部门数据接口开发">
+      <option name="closed" value="true" />
+      <created>1745134100337</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745134100337</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +178,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="构建空项目" />
     <MESSAGE value="工程搭建" />
-    <option name="LAST_COMMIT_MESSAGE" value="工程搭建" />
+    <MESSAGE value="查询全部部门数据接口开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="查询全部部门数据接口开发" />
   </component>
 </project>
