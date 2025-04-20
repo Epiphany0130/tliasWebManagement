@@ -128,6 +128,7 @@
       <workItem from="1745125313155" duration="5540000" />
       <workItem from="1745134392168" duration="190000" />
       <workItem from="1745134748780" duration="1813000" />
+      <workItem from="1745148957307" duration="2051000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -169,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745134471364</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="删除部门">
+      <option name="closed" value="true" />
+      <created>1745149110010</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745149110010</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +199,7 @@
     <MESSAGE value="构建空项目" />
     <MESSAGE value="工程搭建" />
     <MESSAGE value="查询全部部门数据接口开发" />
-    <option name="LAST_COMMIT_MESSAGE" value="查询全部部门数据接口开发" />
+    <MESSAGE value="删除部门" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除部门" />
   </component>
 </project>

@@ -4,11 +4,9 @@ import com.gyqstd.pojo.Dept;
 import com.gyqstd.pojo.Result;
 import com.gyqstd.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.swing.table.TableRowSorter;
 import java.util.List;
 
 /**
@@ -32,6 +30,13 @@ public class DeptController {
     public Result delete(Integer id) {
         System.out.println("根据 ID 删除部门" + id);
         deptService.deleteById(id);
+        return Result.success();
+    }
+
+    @PostMapping("/depts")
+    public Result add(@RequestBody Dept dept) {
+        System.out.println("新增部门：" + dept);
+        deptService.add(dept);
         return Result.success();
     }
 }
