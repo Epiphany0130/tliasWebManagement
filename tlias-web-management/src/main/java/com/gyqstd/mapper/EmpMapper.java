@@ -4,6 +4,7 @@ import com.gyqstd.pojo.Emp;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -21,6 +22,6 @@ public interface EmpMapper {
 //    public List<Emp> list(Integer start, Integer pageSize);
     //-------------------------------------------------------
     // PageHelper
-    @Select("select e.*, d.name deptName from emp e left join dept d on e.dept_id = d.id order by e.update_time desc")
-    public List<Emp> list();
+//    @Select("select e.*, d.name deptName from emp e left join dept d on e.dept_id = d.id order by e.update_time desc")
+    public List<Emp> list(String name, Integer gender, LocalDate begin, LocalDate end);
 }

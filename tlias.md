@@ -794,7 +794,7 @@ public class EmpExpr {
 
 Mapper：执行两条 SQL。
 
-Service：1. 调用 Mapper，查询总记录数。2. 调用 Mapper，查询结果列表。3. 封装 `PageResult` 对象，返回
+Service：1. 调用 Mapper，查询总记录数。2. 调用 Mapper，查询结果列表。3. 封装 `PageResult` 对象，返回。
 
 Controller：1. 接收请求（分页）。2. 调用 Service，获取 `PageResult`。3. 相应结果。
 
@@ -894,7 +894,105 @@ Controller：1. 接收请求（分页）。2. 调用 Service，获取 `PageResul
       return new PageResult<Emp>(p.getTotal(), p.getResult); 
       ```
 
+## 条件分页查询
 
+### 根据需求文档
 
+1. 输入员工名称进行查询。
+2. 选择员工性别进行精确查询。
+3. 选择入职时间的开始时间和结束时间，可进行范围查询。
 
+### 根据接口文档
+
+1. 请求路径：`/emps`
+
+2. 请求方式：`GET`
+
+3. 请求数据样例：
+
+   ```html
+   /emps?name=张&gender=1&begin=2007-09-01&end=2022-09-01&page=1&pageSize=10
+   ```
+
+4. 相应数据样例：
+
+   ```json
+   {
+     "code": 1,
+     "msg": "success",
+     "data": {
+       "total": 2,
+       "rows": [
+          {
+           "id": 1,
+           "username": "jinyong",
+           "name": "金庸",
+           "gender": 1,
+           "image": "https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-53B.jpg",
+           "job": 2,
+           "salary": 8000,
+           "entryDate": "2015-01-01",
+           "deptId": 2,
+           "deptName": "教研部",
+           "createTime": "2022-09-01T23:06:30",
+           "updateTime": "2022-09-02T00:29:04"
+         },
+         {
+           "id": 2,
+           "username": "zhangwuji",
+           "name": "张无忌",
+           "gender": 1,
+           "image": "https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-53B.jpg",
+           "job": 2,
+           "salary": 6000,
+           "entryDate": "2015-01-01",
+           "deptId": 2,
+           "deptName": "教研部",
+           "createTime": "2022-09-01T23:06:30",
+           "updateTime": "2022-09-02T00:29:04"
+         }
+       ]
+     }
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行 SQL。
+
+Service：1. 使用 PageHelper 完成分页条件查询。2. 封装 `PageResult` 对象，返回。
+
+Controller：1. 接收请求（分页、条件）。2. 调用 Service，获取 `PageResult`。3. 相应结果。
+
+### 开发步骤
+
+1. 准备 SQL
+
+   ```sql
+   select e.*, d.name deptName from emp e left join dept d on e.dept_id = d.id 
+   where e.name like '%阮%' and e.gender = 1 and e.entry_date between '2010-01-01' and '2020-01-01'
+   order by e.update_time desc;
+   ```
+
+2. 在 Controller 中添加参数，`String` 的 `name`，`Integer` 的 `gender`，`LocalDate` 的 `begin`，`LocalDate` 的 `end`。
+
+3. 指定日期时间类型传递的格式，使用 `DateTimeFormat` 注解，注解内使用 `pattern` 指定格式。
+
+   ```java
+   @DateTimeFormat(pattern = "yyyy-MM-dd")
+   ```
+
+4. 用 `log.info` 打印日志 “分页查询：page, pageSize, name, gender, begin, end”。
+
+5. 在使用 `page` 的时候添加传递参数。同时在定义方法的地方还有实现类中增加参数。
+
+6. 在 `list` 方法定义的地方添加条件对应的参数，然后在 Service 中传递参数。
+
+7. 这个 SQL 相对复杂，所以我们在 xml 下定义 SQL，在 `resources` 目录下创建包 `com.itheima.mapper`，然后在该目录下创建文件 `EmpMapper.xml`。
+
+8. 从 MyBatis 的文档中复制 XML 的框架，然后删除不需要的内容，再此基础上进行更改。
+
+9. 将映射文件的 `namespace` 属性设为 mapper interface 的全类名。
+
+10. 删除原 SQL，在方法上 `Alt + Enter`，在 xml 生成 SQL。直接在标签中编写 SQL 就可以了，将原 SQL 复制到 xml 中，然后更改固定的内容为占位符形式。
 
