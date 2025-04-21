@@ -996,3 +996,71 @@ Controller：1. 接收请求（分页、条件）。2. 调用 Service，获取 `
 
 10. 删除原 SQL，在方法上 `Alt + Enter`，在 xml 生成 SQL。直接在标签中编写 SQL 就可以了，将原 SQL 复制到 xml 中，然后更改固定的内容为占位符形式。
 
+### 程序优化（参数过多）
+
+将多个请求参数封装成一个对象，这样我们在 Controller 中只需要调用对象就可以了，然后在对象中就可以获取到请求参数。
+
+开发步骤：
+
+1. 在 pojo 下定义实体类 `EmpQueryParam`，并添加 `Data` 注解，然后定义属性。
+
+   ```java
+   @Data 
+   public class EmpQueryParam {
+       private Integer page = 1;
+       private Integer pageSize = 10;
+       private String name;
+       private Integer gender;
+       @DateTimeFormat(pattern = "yyyy-MM-dd")
+       private LocalDate begin;
+       @DateTimeFormat(pattern = "yyyy-MM-dd")
+       private LocalDate end;
+   }
+   ```
+
+2. 更改 Controller，参数直接调用实体类就行。
+
+   ```java
+   @GetMapping
+   public Result page(EmpQueryParam empQueryParam){
+       log.info("分页查询：{}", empQueryParam);
+       PageResult<Emp> pageResult = empService.page(empQueryParam);
+       return Result.success(pageResult);
+   }
+   ```
+
+3. 重新在 Service 中定义 `page` 方法。
+
+4. 更改 Service 实现类中的 `page`，将参数更改为实体类。
+
+5. 方法体的参数都改为实体类调用的方式。
+
+6. `list` 的参数比较多，可以直接传实体类，再把形参的部分也更改为实体类对象就可以了。
+
+### 程序优化（SQL 条件被写死）
+
+目前在 xml 文件中的 SQL 是被写死的，但实际使用的时候查询条件会随着用户输入的条件变化而变化，所以应该把 SQL 改为动态 SQL。
+
+开发步骤：
+
+1. 直接更改 xml 里面的 SQL 就可以。
+
+   ```sql
+   <select id="list" resultType="com.gyqstd.pojo.Emp">
+           select e.*, d.name deptName from emp e left join dept d on e.dept_id = d.id
+           <where>
+               <if test="name != null and name != ''">
+                   e.name like concat('%', #{name}, '%')
+               </if>
+               <if test="gender != null">
+                   and e.gender = #{gender}
+               </if>
+               <if test="begin != null and end != null">
+                   and e.entry_date between #{begin} and #{end}
+               </if>
+           </where>
+           order by e.update_time desc
+       </select>
+   ```
+
+   
