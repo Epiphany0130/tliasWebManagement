@@ -884,6 +884,17 @@ Controller：1. 接收请求（分页）。2. 调用 Service，获取 `PageResul
    3. 最后解析查询结果并封装。
 
       ```java
+      return new PageResult<Emp>();
+      ```
+   
+   4. 参数需要两个，第二个参数 `rows` 已经有了，但第一个 `total` 没有，`PageHelper` 会自动帮我们完成分页操作，将结果封装在一个对象中，这个对象叫 `Page`，所以在这里声明一个 `Page<Emp> p`，然后将查询到的 `empList` 强转成 `Page`，然后在 `Page` 里就有查询到的所有信息。
+   
+      ```java
+      Page<Emp> p = (Page<Emp>) empList;
+      return new PageResult<Emp>(p.getTotal(), p.getResult); 
       ```
 
-      
+
+
+
+
