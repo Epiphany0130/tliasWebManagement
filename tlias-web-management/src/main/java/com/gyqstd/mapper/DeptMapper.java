@@ -1,10 +1,7 @@
 package com.gyqstd.mapper;
 
 import com.gyqstd.pojo.Dept;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,4 +22,7 @@ public interface DeptMapper {
 
     @Select("select id, name, create_time, update_time from dept where id = #{id}")
     Dept getById(Integer id);
+
+    @Update("update dept set name = #{name}, update_time = #{updateTime} where id = #{id}")
+    void update(Dept dept);
 }
