@@ -1,6 +1,7 @@
 package com.gyqstd.controller;
 
 import com.gyqstd.pojo.Emp;
+import com.gyqstd.pojo.EmpQueryParam;
 import com.gyqstd.pojo.PageResult;
 import com.gyqstd.pojo.Result;
 import com.gyqstd.service.EmpService;
@@ -27,13 +28,9 @@ public class EmpController {
     private EmpService empService;
 
     @GetMapping
-    public Result page(@RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer pageSize,
-                       String name, Integer gender,
-                       @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
-                       @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end) {
-        log.info("分页查询：{}, {}, {}, {}, {}, {}", page, pageSize, name, gender, begin, end);
-        PageResult<Emp> pageResult = empService.page(page, pageSize, name, gender, begin, end);
+    public Result page(EmpQueryParam empQueryParam) {
+        log.info("分页查询：{}", empQueryParam);
+        PageResult<Emp> pageResult = empService.page(empQueryParam);
         return Result.success(pageResult);
     }
 }

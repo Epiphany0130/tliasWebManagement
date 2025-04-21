@@ -1,6 +1,7 @@
 package com.gyqstd.mapper;
 
 import com.gyqstd.pojo.Emp;
+import com.gyqstd.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -23,5 +24,5 @@ public interface EmpMapper {
     //-------------------------------------------------------
     // PageHelper
 //    @Select("select e.*, d.name deptName from emp e left join dept d on e.dept_id = d.id order by e.update_time desc")
-    public List<Emp> list(String name, Integer gender, LocalDate begin, LocalDate end);
+    public List<Emp> list(EmpQueryParam empQueryParam);
 }

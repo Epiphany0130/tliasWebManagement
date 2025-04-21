@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.gyqstd.mapper.EmpMapper;
 import com.gyqstd.pojo.Emp;
+import com.gyqstd.pojo.EmpQueryParam;
 import com.gyqstd.pojo.PageResult;
 import com.gyqstd.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,12 @@ public class EmpServiceImpl implements EmpService {
     //-------------------------------------------------------
     // PageHelper
     @Override
-    public PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
+    public PageResult<Emp> page(EmpQueryParam empQueryParam) {
         // 1. 设置分页参数
-        PageHelper.startPage(page, pageSize);
+        PageHelper.startPage(empQueryParam.getPage(), empQueryParam.getPageSize());
 
         // 2. 执行查询
-        List<Emp> empList = empMapper.list(name, gender, begin, end);
+        List<Emp> empList = empMapper.list(empQueryParam);
 
         // 3. 查询结果并封装
         Page<Emp> p = (Page<Emp>) empList;
