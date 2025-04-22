@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="678eeb90-435d-4f70-a645-38daec6120c4" name="更改" comment="员工数据分页查询（PageHelper）">
-      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpExprMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/resources/com/gyqstd/mapper/EmpExprMapper.xml" afterDir="false" />
+    <list default="true" id="678eeb90-435d-4f70-a645-38daec6120c4" name="更改" comment="新增员工">
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/UploadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/utils/AliyunOSSOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/EmpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/EmpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpExperMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/pojo/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/pojo/Emp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/EmpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/EmpService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/EmpServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/EmpServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/controller/EmpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/controller/EmpController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/mapper/EmpMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/mapper/EmpMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/EmpService.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/EmpService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/EmpServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/EmpServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tlias.md" beforeDir="false" afterPath="$PROJECT_DIR$/tlias.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +38,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Epiphany0130/tliasWebManagement.git&quot;,
-    &quot;accountId&quot;: &quot;9aa5fa5b-f59f-43d3-bdfd-4d0d876549fd&quot;
+    &quot;accountId&quot;: &quot;83866ddc-244e-429b-b6d6-4443043e58f5&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -88,7 +80,7 @@
     &quot;Spring Boot.TliasWebManagementApplication.executor&quot;: &quot;Debug&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/My_study/university/@DevCode/JavaWeb/tlias/tlias-web-management/src/main/java/com/gyqstd/pojo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/guyuqi/Documents/@DevCode/JAVA/tliasWebManagement/tlias-web-management/src/main/java/com/gyqstd/utils&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -97,7 +89,7 @@
     &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -113,6 +105,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/utils" />
       <recent name="D:\My_study\university\@DevCode\JavaWeb\tlias\tlias-web-management\src\main\java\com\gyqstd\pojo" />
       <recent name="D:\My_study\university\@DevCode\JavaWeb\tlias\tlias-web-management\src\main\resources" />
     </key>
@@ -120,6 +113,9 @@
   <component name="RunManager">
     <configuration name="TliasWebManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="tlias-web-management" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.gyqstd.TliasWebManagementApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -155,6 +151,11 @@
       <workItem from="1745240244722" duration="22000" />
       <workItem from="1745280857339" duration="1687000" />
       <workItem from="1745298066715" duration="1782000" />
+      <workItem from="1745304304293" duration="203000" />
+      <workItem from="1745304516357" duration="871000" />
+      <workItem from="1745305401299" duration="427000" />
+      <workItem from="1745305837661" duration="2016000" />
+      <workItem from="1745365409252" duration="299000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -298,5 +299,9 @@
     <MESSAGE value="员工数据分页查询（PageHelper）" />
     <MESSAGE value="新增员工 添加 md" />
     <option name="LAST_COMMIT_MESSAGE" value="新增员工 添加 md" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

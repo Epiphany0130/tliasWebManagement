@@ -1190,3 +1190,44 @@ Controller：1. 接收请求（json）。2. 调用 Service。3. 相应结果。
     });
     ```
 
+## 文件上传
+
+### 根据需求文档
+
+将文件存储在阿里云 OSS。
+
+### 根据接口文档
+
+1. 请求路径：`/upload`
+
+2. 请求方式：`POST`
+
+3. 请求参数：文件。
+
+4. 相应数据样例：
+
+   ```json
+   {
+       "code": 1,
+       "msg": "success",
+       "data": "https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-0400.jpg"
+   }
+   ```
+
+### 开发步骤
+
+1. 单独创建 `utils` 目录，目录下引入阿里云 OSS 文件上传工具类。
+
+2. 编写 Controller，定义 `public` 的 `upload`，返回值为 `Result`。添加注解 `PostMapping`。传递 `MultipartFile` 的 `file`。
+
+3. 用 `log.info` 打印日志 “文件上传：file.getOriginalFilename”。
+
+4. 将文件交给 OSS，所以先注入其工具类。调用其 `upload` 方法。传递其字节数组和原始文件名。 这里如果有异常直接抛出就可以。返回其 url，使用 `String` 接收。
+
+   ```java
+   String url = aliyunOSSOperator.upload(file.getBytes(), file.getOriginalFilename());
+   ```
+
+5. 用 `log.info` 打印日志 “文件上传 OSS，url：url”。
+
+6. 返回 `Result` 并传递 url。
