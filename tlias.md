@@ -1063,4 +1063,142 @@ Controller：1. 接收请求（分页、条件）。2. 调用 Service，获取 `
        </select>
    ```
 
-   
+
+## 新增员工
+
+### 根据需求文档
+
+1. 员工的基本信息存储在 `emp` 表。
+2. 员工工作经历信息存储在 `emp_expr` 表。
+
+### 根据接口文档
+
+1. 请求路径：`/emps`
+
+2. 请求方式：`POST`
+
+3. 请求数据样例：
+
+   ```json
+   {
+     "image": "https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-03-07-37-38222.jpg",
+     "username": "linpingzhi",
+     "name": "林平之",
+     "gender": 1,
+     "job": 1,
+     "entryDate": "2022-09-18",
+     "deptId": 1,
+     "phone": "18809091234",
+     "salary": 8000,
+     "exprList": [
+         {
+            "company": "百度科技股份有限公司",
+            "job": "java开发",
+            "begin": "2012-07-01",
+            "end": "2019-03-03"
+         },
+         {
+            "company": "阿里巴巴科技股份有限公司",
+            "job": "架构师",
+            "begin": "2019-03-15",
+            "end": "2023-03-01"
+         }
+      ]
+   }
+   ```
+
+4. 相应数据样例：
+
+   ```json
+   {
+       "code":1,
+       "msg":"success",
+       "data":null
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行两条 SQL。
+
+Service：1. 保存员工基本信息。2. 批量保存员工的工作经历信息
+
+Controller：1. 接收请求（json）。2. 调用 Service。3. 相应结果。
+
+### 开发步骤
+
+1. 在实体类 `Emp` 中封装工作经历信息。即定义 `private` 的 `List` 属性 `exprList`。`List` 的泛型是 `EmpExpr`。
+
+2. 编写 Controller，定义 `public` 的方法 `save`，返回为 `Result`。添加注解 `PostMappping`。参数要接收前端传递的 json，也就是刚才封装好的 `Emp`。并添加注解 `RequestBody`。
+
+3. 用 `log.info` 打印日志 “新增员工：emp”。
+
+4. 调用 Service 的方法，并传递 `emp`，定义方法名为 `save`。
+
+5. 返回 `Result`。
+
+6. 方法上 `Alt + Enter`，在 Service interface 中定义方法，进入实现类，实现方法。
+
+7. 先来完成保存员工的基本信息，先给 `creatTime` 和 `updateTime` 赋值为 `LocalDateTime.now()`，然后直接调用 Mapper 的方法，并传递 `emp`，定义方法名 `insert`。
+
+8. 方法上 `Alt + Enter`，在 Mapper 中定义方法，添加 `Insert` 注解，定义 SQL。
+
+   ```java
+   @Insert("insert into emp(username, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time) values (#{username}, #{name}, #{gender}, #{phone}, #{job}, #{salary}, #{image}, #{entryDate}, #{deptId}, #{createTime})")
+   ```
+
+9. 至此，完成了保存员工的基本信息。接下来，保存员工工作经历信息。
+
+10. 定义 `List` 的 `exprList` 来获取 `emp` 中 `ExprList` 的内容，`List` 泛型为 `EmpExpr。
+
+    ```java
+    List<EmpExpr> exprList = emp.getExprList();
+    ```
+
+11. 如果工作经历不为空，再保存工作经历，所以要先判断，直接调用 `CollectionUtils` 这个工具类的 `isEmpty` 来判断是否为空。
+
+    ```java
+    if(!CollectionUtils.isEmpty(exproList))
+    ```
+
+12. 如果不为空，就调用 `EmpExprMapper`，所以要先注入 `EmpExprMapper`，然后调用其方法，定义方法名为 `insertBatch`，并传递 `exprList`。
+
+13. 方法上 `Alt + Enter`，定义方法，然后通过 xml 定义 SQL。
+
+14. 先创建映射文件，命名为 `EmpExprMapper.xml` 并修改文件。
+
+15. Mapper 的方法上 `Alt + Enter` 定义 SQL。
+
+    ```xml
+    insert into emp_expr(emp_id, begin, end, company, job)
+    <foreach collection = "exprList" item = "expr" separator = ",">
+    	(#{expr.empId}, #{expr.begin}, #{expr.end}, #{expr.company}, #{expr.job})
+    </foreach>
+    ```
+
+16. 在前端接收的数据中，工作经历是没有 ID 的，所以我们要获取刚刚添加的员工基本信息的 ID 值，可以在 Mapper 使用 `Options` 注解，将 `useGeneratedKeys` 设为 `true`，这样就可以获取到主键，然后使用 `keyProperty` 属性指定封装到对象的哪个属性。
+
+    ```java
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    ```
+
+17. 在 Service 的实现类中，调用 `insertBatch` 之前还需要遍历集合，为 `empId` 复制
+
+    ```java
+    exprList.forEach(empExpr -> {
+        empExpr.setEmpId(emp.getId());
+    });
+    ```
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+

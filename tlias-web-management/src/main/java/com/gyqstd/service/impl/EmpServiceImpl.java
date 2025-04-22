@@ -2,16 +2,18 @@ package com.gyqstd.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.gyqstd.mapper.EmpExprMapper;
 import com.gyqstd.mapper.EmpMapper;
 import com.gyqstd.pojo.Emp;
+import com.gyqstd.pojo.EmpExpr;
 import com.gyqstd.pojo.EmpQueryParam;
 import com.gyqstd.pojo.PageResult;
 import com.gyqstd.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -23,6 +25,9 @@ public class EmpServiceImpl implements EmpService {
 
     @Autowired
     private EmpMapper empMapper;
+
+    @Autowired
+    private EmpExprMapper empExperMapper;
     //-------------------------------------------------------
     // 传统方式
 //    @Override
@@ -45,5 +50,20 @@ public class EmpServiceImpl implements EmpService {
         // 3. 查询结果并封装
         Page<Emp> p = (Page<Emp>) empList;
         return new PageResult<Emp>(p.getTotal(), p.getResult());
+    }
+
+    @Override
+    public void save(Emp emp) {
+        emp.setCreateTime(LocalDateTime.now());
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.insert(emp);
+
+        List<EmpExpr> exprList = emp.getExprList();
+        if(!CollectionUtils.isEmpty(exprList)){
+            exprList.forEach(empExpr -> {
+                empExpr.setEmpId(emp.getId());
+            });
+            empExperMapper.insertBatch(exprList);
+        }
     }
 }
