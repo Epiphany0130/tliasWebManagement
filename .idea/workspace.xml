@@ -46,7 +46,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Epiphany0130/tliasWebManagement.git&quot;,
-    &quot;accountId&quot;: &quot;83866ddc-244e-429b-b6d6-4443043e58f5&quot;
+    &quot;accountId&quot;: &quot;9aa5fa5b-f59f-43d3-bdfd-4d0d876549fd&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -153,6 +153,8 @@
       <workItem from="1745211902185" duration="5344000" />
       <workItem from="1745220943823" duration="2526000" />
       <workItem from="1745240244722" duration="22000" />
+      <workItem from="1745280857339" duration="1687000" />
+      <workItem from="1745298066715" duration="1782000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -250,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745217436714</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="新增员工 添加 md">
+      <option name="closed" value="true" />
+      <created>1745281106240</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745281106240</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +296,7 @@
     <MESSAGE value="员工管理框架搭建" />
     <MESSAGE value="添加 md" />
     <MESSAGE value="员工数据分页查询（PageHelper）" />
-    <option name="LAST_COMMIT_MESSAGE" value="员工数据分页查询（PageHelper）" />
+    <MESSAGE value="新增员工 添加 md" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增员工 添加 md" />
   </component>
 </project>
