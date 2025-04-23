@@ -1422,7 +1422,7 @@ Controller：1. 接收请求（ID）。2. 调用 Service。3. 响应结果。
 
 Mapper：执行 SQL。
 
-Service：1. 调用 mapper 查询员工详细信息（基本信息、工作经历信息）。
+Service：调用 mapper 查询员工详细信息（基本信息、工作经历信息）。
 
 Controller：1. 接收请求（ID）。2. 调用 Service。3. 响应结果。
 
@@ -1491,4 +1491,165 @@ Controller：1. 接收请求（ID）。2. 调用 Service。3. 响应结果。
    </resultMap>
    ```
 
-   
+
+## 修改员工（数据修改）
+
+### 根据需求文档
+
+根据回显回来的数据进行修改员工信息。
+
+### 根据需求文档
+
+1. 请求路径：`/emps`
+
+2. 请求方式：`PUT`
+
+3. 请求数据样例：
+
+   ```json
+   {
+       "id": 2,
+       "username": "zhangwuji",
+       "password": "123456",
+       "name": "张无忌",
+       "gender": 1,
+       "image": "https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-53B.jpg",
+       "job": 2,
+       "salary": 8000,
+       "entryDate": "2015-01-01",
+       "deptId": 2,
+       "createTime": "2022-09-01T23:06:30",
+       "updateTime": "2022-09-02T00:29:04",
+       "exprList": [
+         {
+           "id": 1,
+           "begin": "2012-07-01",
+           "end": "2015-06-20"
+           "company": "中软国际股份有限公司"
+           "job": "java开发",
+           "empId": 2
+         },
+         {
+           "id": 2,
+           "begin": "2015-07-01",
+           "end": "2019-03-03"
+           "company": "百度科技股份有限公司"
+           "job": "java开发",
+           "empId": 2
+         },
+         {
+           "id": 3,
+           "begin": "2019-3-15",
+           "end": "2023-03-01"
+           "company": "阿里巴巴科技股份有限公司"
+           "job": "架构师",
+           "empId": 2
+         }
+       ]
+     }
+   ```
+
+4. 响应数据样例：
+
+   ```java
+   {
+       "code":1,
+       "msg":"success",
+       "data":null
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行三条 SQL（update、delete、insert）。
+
+Service：1. 根据 ID 修改员工的基本信息。2. 根据 ID 修改工作经历信息。
+
+Controller：1. 接收请求（json）。2. 调用 Service。3. 响应结果。
+
+### 开发步骤
+
+1. 编写 Controller，定义 `public` 的 `update`，返回值为 `Result`，添加 `PutMapping` 注解。使用 `Emp` 的 `emp` 接收请求的 json，并添加 `RequestBody` 注解。
+
+2. 用 `log.info` 打印日志“修改员工：emp”。
+
+3. 调用 service 的方法，定义方法名为 “update”，并传递 `emp`。
+
+4. 返回 `Result`。
+
+5. 方法名上 `Alt + Enter`，定义方法，进入实现类，实现方法。
+
+6. 先将 `emp` 的 `updateTime` 设置为 `LocalDateTime.now()`。
+
+7. 调用 mapper 的方法，根据 ID 修改员工的基本信息，定义方法名为 `updateById`，并传递 `emp`。
+
+8. 再根据 ID 修改员工的工作经历信息，分两步，首先根据员工 ID 删除原有的工作经历，即调用 `ExprMapper` 的 `deleteByEmpIds` 方法删除员工的工作经历，参数用 `emp.getId()` 拿到 `id`，然后使用 `Arrays` 工具类提供的 `asList` 方法将其封装成 `List` 集合。
+
+   ```java
+   empExprMapper.deleteByEmpIds(Arrays.asList(emp.getId()));
+   ```
+
+9. 然后再添加这个员工的工作经历，先 `getExprList` 拿到工作经历的集合，然后封装在 List 中。
+
+   ```java
+   List<EmpExpr> exprList = emp.getExprList();
+   ```
+
+10. 拿到员工经历后我们要清楚这个员工经历是哪个员工的经历，所以要用 `forEach`拿到 `empId` 这个值并赋值给 List 的 `EmpId`，然后调用 mapper 的 `insertBatch` 方法并传递 `exprList`。
+
+    ```java
+    List<EmpExpr> exprList = emp.getExprList();
+    if(!CollectionUtils.isEmpty(exprList)){
+        exprList.forEach(empExpr -> empExpr.setEmpId(emp.getId()));
+        empExprMapper.insertBatch(exprList);
+    }
+    ```
+
+11. 给整个方法添加事务管理
+
+    ```java
+    @Transactional(rollbackFor = Exception.class)
+    ```
+
+12. `updateById` 方法上 `Alt + Enter` 定义方法，基于 xml 方式定义 SQL。
+
+    ```SQL
+    UPDATE emp
+    SET
+        username = #{username},
+        password = #{password},
+        name = #{name},
+        gender = #{gender},
+        phone = #{phone},
+        job = #{job},
+        salary = #{salary},
+        image = #{image},
+        entry_date = #{entryDate},
+        dept_id = #{deptId},
+        update_time = #{updateTime}
+    WHERE id = #{id}
+    ```
+
+13. 为了提高 SQL 的复用性，将 SQL 改为动态 SQL。
+
+    ```xml
+    UPDATE emp
+    <set>
+        <if test = "username != null and username != ''">username = #{username},</if>
+        <if test = "password != null and password != ''">password = #{password},</if>
+        <if test = "name != null and name != ''">name = #{name},</if>
+        <if test = "gender != null">gender = #{gender},</if>
+        <if test = "phone != null and phone != ''">phone = #{phone},</if>
+        <if test = "job != null">job = #{job},</if>
+        <if test = "salary != null">salary = #{salary},</if>
+        <if test = "image != null and image != ''">image = #{image},</if>
+        <if test = "entryDate != null">entry_date = #{entryDate},</if>
+        <if test = "deptId != null">dept_id = #{deptId},</if>
+        <if test = "updateTime != null">update_time = #{updateTime}</if>
+    </set>
+    WHERE id = #{id}
+    ```
+
+    
+
+    

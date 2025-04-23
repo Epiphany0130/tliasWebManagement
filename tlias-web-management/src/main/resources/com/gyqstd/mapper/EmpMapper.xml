@@ -3,6 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gyqstd.mapper.EmpMapper">
+    <update id="updateById">
+        UPDATE emp
+        SET
+            username = #{username},
+            password = #{password},
+            name = #{name},
+            gender = #{gender},
+            phone = #{phone},
+            job = #{job},
+            salary = #{salary},
+            image = #{image},
+            entry_date = #{entryDate},
+            dept_id = #{deptId},
+            update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
     <delete id="deleteById">
         delete from emp where id in
         <foreach collection = "ids" item = "id" separator = "," open = "(" close = ")">

@@ -53,4 +53,11 @@ public class EmpController {
         Emp emp = empService.getInfo(id);
         return Result.success(emp);
     }
+
+    @PutMapping
+    public Result update(@RequestBody Emp emp) {
+        log.info("修改员工：{}", emp);
+        empService.update(emp);
+        return Result.success();
+    }
 }

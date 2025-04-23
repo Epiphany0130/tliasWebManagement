@@ -37,4 +37,6 @@ public interface EmpMapper {
     void deleteById(List<Integer> ids);
 
     Emp getById(Integer id);
+
+    void updateById(Emp emp);
 }

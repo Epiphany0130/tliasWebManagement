@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class EmpServiceImpl implements EmpService {
     private EmpMapper empMapper;
 
     @Autowired
-    private EmpExprMapper empExperMapper;
+    private EmpExprMapper empExprMapper;
 
     //-------------------------------------------------------
     // 传统方式
@@ -65,7 +66,7 @@ public class EmpServiceImpl implements EmpService {
             exprList.forEach(empExpr -> {
                 empExpr.setEmpId(emp.getId());
             });
-            empExperMapper.insertBatch(exprList);
+            empExprMapper.insertBatch(exprList);
         }
     }
 
@@ -73,11 +74,26 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public void delete(List<Integer> ids) {
         empMapper.deleteById(ids);
-        empExperMapper.deleteByEmpId(ids);
+        empExprMapper.deleteByEmpId(ids);
     }
 
     @Override
     public Emp getInfo(Integer id) {
         return empMapper.getById(id);
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void update(Emp emp) {
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.updateById(emp);
+
+        empExprMapper.deleteByEmpId(Arrays.asList(emp.getId()));
+
+        List<EmpExpr> exprList = emp.getExprList();
+        if(!CollectionUtils.isEmpty(exprList)) {
+            exprList.forEach(empExpr -> empExpr.setEmpId(emp.getId()));
+            empExprMapper.insertBatch(exprList);
+        }
     }
 }
