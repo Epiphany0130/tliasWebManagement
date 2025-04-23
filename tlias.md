@@ -161,7 +161,7 @@ https://heuqqdmbyk.feishu.cn/wiki/GyZVwpRf6ir89qkKtFqc0HlTnhg
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @Controller
-    @ResponseBody // 将方法的返回值直接作为相应数据相应给前端，如果数据是一个对象或一个集合，会先转 json，然后再响应
+    @ResponseBody // 将方法的返回值直接作为相应数据响应给前端，如果数据是一个对象或一个集合，会先转 json，然后再响应
     public @interface RestController {
         @AliasFor(
             annotation = Controller.class
@@ -189,7 +189,7 @@ https://heuqqdmbyk.feishu.cn/wiki/GyZVwpRf6ir89qkKtFqc0HlTnhg
 
 2. 请求方式为：`GET`
 
-3. 相应数据样例：
+3. 响应数据样例：
 
    ```json
    {
@@ -218,7 +218,7 @@ Mapper：执行 SQL。
 
 Service：调用 Mapper。
 
-Controller：1. 接收请求。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -302,7 +302,7 @@ Controller：1. 接收请求。2. 调用 Service。3. 相应结果。
    /depts?id=1
    ```
 
-4. 相应数据样例：
+4. 响应数据样例：
 
    ```json
    {
@@ -318,7 +318,7 @@ Mapper：执行 SQL。
 
 Service：调用 Mapper。
 
-Controller：1. 接收请求（/depts?id=1）。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求（/depts?id=1）。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -382,7 +382,7 @@ Mapper：执行 SQL。
 
 Service：1. 补全基础属性。2. 调用 Mapper。
 
-Controller：1. 接收请求（/depts）。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求（/depts）。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -455,7 +455,7 @@ Mapper：执行 SQL。
 
 Service：调用 Mapper。
 
-Controller：1. 接收请求（/depts/1）。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求（/depts/1）。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -522,7 +522,7 @@ Mapper：执行 SQL。
 
 Service：1. 补全基础属性。2. 调用 Mapper。
 
-Controller：1. 接收请求（json）。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求（json）。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -748,7 +748,7 @@ public class EmpExpr {
    /emps?name=张&gender=1&begin=2007-09-01&end=2022-09-01&page=1&pageSize=10
    ```
 
-4. 相应数据样例：
+4. 响应数据样例：
 
    ```json
    {
@@ -796,7 +796,7 @@ Mapper：执行两条 SQL。
 
 Service：1. 调用 Mapper，查询总记录数。2. 调用 Mapper，查询结果列表。3. 封装 `PageResult` 对象，返回。
 
-Controller：1. 接收请求（分页）。2. 调用 Service，获取 `PageResult`。3. 相应结果。
+Controller：1. 接收请求（分页）。2. 调用 Service，获取 `PageResult`。3. 响应结果。
 
 ### 开发步骤
 
@@ -914,7 +914,7 @@ Controller：1. 接收请求（分页）。2. 调用 Service，获取 `PageResul
    /emps?name=张&gender=1&begin=2007-09-01&end=2022-09-01&page=1&pageSize=10
    ```
 
-4. 相应数据样例：
+4. 响应数据样例：
 
    ```json
    {
@@ -962,7 +962,7 @@ Mapper：执行 SQL。
 
 Service：1. 使用 PageHelper 完成分页条件查询。2. 封装 `PageResult` 对象，返回。
 
-Controller：1. 接收请求（分页、条件）。2. 调用 Service，获取 `PageResult`。3. 相应结果。
+Controller：1. 接收请求（分页、条件）。2. 调用 Service，获取 `PageResult`。3. 响应结果。
 
 ### 开发步骤
 
@@ -1107,7 +1107,7 @@ Controller：1. 接收请求（分页、条件）。2. 调用 Service，获取 `
    }
    ```
 
-4. 相应数据样例：
+4. 响应数据样例：
 
    ```json
    {
@@ -1123,7 +1123,7 @@ Mapper：执行两条 SQL。
 
 Service：1. 保存员工基本信息。2. 批量保存员工的工作经历信息
 
-Controller：1. 接收请求（json）。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求（json）。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -1204,7 +1204,7 @@ Controller：1. 接收请求（json）。2. 调用 Service。3. 相应结果。
 
 3. 请求参数：文件。
 
-4. 相应数据样例：
+4. 响应数据样例：
 
    ```json
    {
@@ -1311,7 +1311,7 @@ Mapper：执行两条 SQL。
 
 Service：1. 批量删除员工基本信息。2. 批量删除员工的工作经历信息。
 
-Controller：1. 接收请求（ID）。2. 调用 Service。3. 相应结果。
+Controller：1. 接收请求（ID）。2. 调用 Service。3. 响应结果。
 
 ### 开发步骤
 
@@ -1363,4 +1363,132 @@ Controller：1. 接收请求（ID）。2. 调用 Service。3. 相应结果。
     </delete>
     ```
 
-    
+
+## 修改员工（数据回显）
+
+### 根据需求文档
+
+根据主键 id 查询基本信息和员工工作经历信息。
+
+### 根据接口文档
+
+1. 请求路径：`/emps/{id}`
+
+2. 请求方式：`GET`
+
+3. 请求参数样例：`/emps/1`
+
+4. 响应数据样例：
+
+   ```json
+   {
+     "code": 1,
+     "msg": "success",
+     "data": {
+       "id": 2,
+       "username": "zhangwuji",
+       "name": "张无忌",
+       "gender": 1,
+       "image": "https://web-framework.oss-cn-hangzhou.aliyuncs.com/2022-09-02-00-27-53B.jpg",
+       "job": 2,
+       "salary": 8000,
+       "entryDate": "2015-01-01",
+       "deptId": 2,
+       "createTime": "2022-09-01T23:06:30",
+       "updateTime": "2022-09-02T00:29:04",
+       "exprList": [
+         {
+           "id": 1,
+           "begin": "2012-07-01",
+           "end": "2019-03-03"
+           "company": "百度科技股份有限公司"
+           "job": "java开发",
+           "empId": 2
+         },
+         {
+           "id": 2,
+           "begin": "2019-3-15",
+           "end": "2023-03-01"
+           "company": "阿里巴巴科技股份有限公司"
+           "job": "架构师",
+           "empId": 2
+         }
+       ]
+     }
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行 SQL。
+
+Service：1. 调用 mapper 查询员工详细信息（基本信息、工作经历信息）。
+
+Controller：1. 接收请求（ID）。2. 调用 Service。3. 响应结果。
+
+### 开发步骤
+
+1. 准备 SQL。
+
+   ```sql
+   select e.*, ee.id ee_id, ee.emp_id ee_empid, ee.begin ee_begin, ee.end ee_end, ee.company ee_company, ee.job ee_job from emp e left join emp_expr ee on e.id = ee.emp_id where e.id = 59;
+   ```
+
+2. 编写 Controller，定义 `public` 的 `getInfo`，返回值为 `Result`。并添加 `GetMapping` 注解，指定路径 `"/{id}"`，接收 `Integer` 的 `id`，添加注解 `PathVariable`。
+
+3.  用 `log.info` 打印日志 “根据 ID 查询员工信息：id”。
+
+4. 调用 Service 中的方法，定义方法名为 `getInfo`，并传递 `id`，返回的信息封装在 `Emp` 的 `emp` 中。
+
+5. 返回 Result，并传递 `emp`。
+
+6. 方法名上 `Alt + Enter`，定义方法，进入实现类，实现方法。
+
+7. 方法中直接返回调用 mapper 的方法，定义方法名为 `getById`，传递 `id`。
+
+8. 方法上 `Alt + Enter`，定义方法，进入 xml 定义 SQL。
+
+   ```sql
+   select
+     e.*
+     ee.id ee_id,
+     ee.emp_id ee_empid,
+     ee.begin ee_begin, 
+     ee.end ee_end, 
+     ee.company ee_company, 
+     ee.job ee_job
+   from emp e left join emp_expr ee on e. id = ee. emp_id
+   where e.id = #{id}
+   ```
+
+9. 此时如果一个人有多个工作经历，那就需要返回多条信息，就会报错，那这里需要手动封装。
+
+   ```xml
+   <!--定义ResuLtMap-->
+   <resultMap id = "empResultMap" type = "com.gyqstd.pojo.Emp">
+     <id column = "id" property = "id"/>
+     <result column = "username"property = "username"/>
+     <result column = "password" property = "password"/>
+     <result column = "name" property = "name"/>
+     <result column = "gender" property = "gender"/>
+     <result column = "phone" property = "phone"/>
+     <result column = "job" property = "job"/>
+     <result column = "salary" property = "salary"/>
+     <result column = "image" property = "image"/>
+     <result column = "entry_date" property = "entryDate"/>
+     <result column = "dept_id"property = "deptId"/>
+     <result column = "create_time"property = "createTime"/>
+     <result column = "update_time" property = "updateTime"/>
+     
+     <!--封装工作经历信息-->
+     <collection property = "exprList" ofType = "com.gyqstd.pojo.EmpExpr">
+     <id column = "ee_id" property = "id"/>
+     <result column = "ee_empid" property = "empId"/>
+     <result column = "ee_begin" property = "begin"/>
+     <result column = "ee_end" property = "end"/>
+     <result column = "ee_company"property = "company"/>
+     <result column = "ee_job"property = "job"/>
+   </resultMap>
+   ```
+
+   

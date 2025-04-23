@@ -29,6 +29,7 @@ public class EmpServiceImpl implements EmpService {
 
     @Autowired
     private EmpExprMapper empExperMapper;
+
     //-------------------------------------------------------
     // 传统方式
 //    @Override
@@ -73,5 +74,10 @@ public class EmpServiceImpl implements EmpService {
     public void delete(List<Integer> ids) {
         empMapper.deleteById(ids);
         empExperMapper.deleteByEmpId(ids);
+    }
+
+    @Override
+    public Emp getInfo(Integer id) {
+        return empMapper.getById(id);
     }
 }

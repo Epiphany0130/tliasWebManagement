@@ -7,6 +7,7 @@ import com.gyqstd.pojo.Result;
 import com.gyqstd.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,12 @@ public class EmpController {
         log.info("删除员工: {}", ids);
         empService.delete(ids);
         return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    public Result getInfo(@PathVariable Integer id) {
+        log.info("根据 ID 查询员工信息：{}", id);
+        Emp emp = empService.getInfo(id);
+        return Result.success(emp);
     }
 }
