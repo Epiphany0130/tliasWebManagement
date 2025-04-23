@@ -282,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745409390667</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="全局异常处理器">
+      <option name="closed" value="true" />
+      <created>1745410320273</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1745410320273</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +329,8 @@
     <MESSAGE value="新增员工 添加 md" />
     <MESSAGE value="文件上传（优化）" />
     <MESSAGE value="修改员工（数据修改）" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改员工（数据修改）" />
+    <MESSAGE value="全局异常处理器" />
+    <option name="LAST_COMMIT_MESSAGE" value="全局异常处理器" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
