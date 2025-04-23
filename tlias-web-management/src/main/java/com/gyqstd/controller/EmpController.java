@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author GuYuqi
@@ -35,6 +36,13 @@ public class EmpController {
     public Result save(@RequestBody Emp emp) {
         log.info("请求参数：{}", emp);
         empService.save(emp);
+        return Result.success();
+    }
+
+    @DeleteMapping
+    public Result delete(@RequestParam List<Integer> ids) {
+        log.info("删除员工: {}", ids);
+        empService.delete(ids);
         return Result.success();
     }
 }

@@ -1281,3 +1281,86 @@ public class Aliyunossoperator {
         String bucketName = aliyunOSSProperties.getBucketName();
 ```
 
+## 删除员工
+
+### 根据需求文档
+
+删除员工数据。
+
+### 根据接口文档
+
+1. 请求路径：`/emps`
+
+2. 请求方式：`DELETE`
+
+3. 请求参数样例：`/emps?ids=1,2,3`
+
+4. 响应数据样例：
+
+   ```json
+   {
+       "code":1,
+       "msg":"success",
+       "data":null
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行两条 SQL。
+
+Service：1. 批量删除员工基本信息。2. 批量删除员工的工作经历信息。
+
+Controller：1. 接收请求（ID）。2. 调用 Service。3. 相应结果。
+
+### 开发步骤
+
+1. 准备 SQL。
+
+   ```sql
+   delete from emp where id in(1, 2, 3);
+   ```
+
+   ```sql
+   delete from emp_expr where emp_id in (1, 2, 3);
+   ```
+
+2. 编写 Controller，这里使用 List 集合接收前端传递的信息。定义 `public` 的 `delete`，返回值为 `Result`，参数用 `List` 接收，属性名为 `ids`，泛型为 `Integer`。添加 `RequestParam` 注解。
+
+3. 使用 `log.info` 打印日志“删除员工：ids”。
+
+4. 调用 Service 的方法，定义方法名为 `delete`，并传递 `ids`。
+
+5. 返回 `Result`。
+
+6. 方法上 `Alt + Enter` 定义方法，进入实现类，实现方法。
+
+7. 分别调用 `emp` 和 `empExpr` Mapper 的方法，`emp` 的方法定义为 `deleteByIds`，并传递 `ids`， `empExpr` 的方法定义为 `deleteByEmpIds`，并传递 `ids`。
+
+8. 方法上添加事务控制，即添加 `Transactional` 注解，注解内添加属性 `rollbackFor = {Exception.class}`，表示出现异常都需要回滚数据。
+
+9. 方法上 `Alt + Enter` 创建方法。
+
+10. `deleteByIds` 的 SQL 定义在 xml 中，具体 SQL 如下：
+
+    ```xml
+    <delete id = "deleteByIds">
+        delete from emp where id in
+        <foreach collection = "ids" item = "id" separator = "," open = "(" close = ")">
+        	#{id}
+        </foreach>
+    </delete>
+    ```
+
+11. `deleteByEmpIds` 的 SQL 也定义在 xml 中，在定义 SQL 前我们更改 Mapper 中的参数名为 `empIds`，和 `Ids` 做区分，具体 SQL 如下：
+
+    ```xml
+    <delete id = "deleteByEmpIds">
+        delete from emp_expr where emp_id in
+        <foreach collection = "empIds" item = "empId" separator = "," open = "(" close = ")">
+        	#{empId}
+        </foreach>
+    </delete>
+    ```
+
+    

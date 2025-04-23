@@ -11,6 +11,7 @@ import com.gyqstd.pojo.PageResult;
 import com.gyqstd.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
@@ -65,5 +66,12 @@ public class EmpServiceImpl implements EmpService {
             });
             empExperMapper.insertBatch(exprList);
         }
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void delete(List<Integer> ids) {
+        empMapper.deleteById(ids);
+        empExperMapper.deleteByEmpId(ids);
     }
 }

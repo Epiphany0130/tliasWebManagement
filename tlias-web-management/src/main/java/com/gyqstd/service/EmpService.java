@@ -6,6 +6,7 @@ import com.gyqstd.pojo.PageResult;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author GuYuqi
@@ -16,4 +17,6 @@ public interface EmpService {
     PageResult<Emp> page(EmpQueryParam empQueryParam);
 
     void save(Emp emp);
+
+    void delete(List<Integer> ids);
 }
