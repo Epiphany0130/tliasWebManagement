@@ -274,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745371034018</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="修改员工（数据修改）">
+      <option name="closed" value="true" />
+      <created>1745409390667</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1745409390667</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +320,8 @@
     <MESSAGE value="员工数据分页查询（PageHelper）" />
     <MESSAGE value="新增员工 添加 md" />
     <MESSAGE value="文件上传（优化）" />
-    <option name="LAST_COMMIT_MESSAGE" value="文件上传（优化）" />
+    <MESSAGE value="修改员工（数据修改）" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改员工（数据修改）" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

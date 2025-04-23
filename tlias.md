@@ -1650,6 +1650,9 @@ Controller：1. 接收请求（json）。2. 调用 Service。3. 响应结果。
     WHERE id = #{id}
     ```
 
-    
+## 全局异常处理器
 
-    
+1. 定义一个新的包，包名叫 `exception`，在该包下定义全局异常处理器类，类名为 `GlobalExceptionHandler`，在类上添加注解 `RestControllerAdvice`，声明当前类是一个全局异常处理器，再添加注解 `Slf4j`。
+2. 类中定义异常捕获的方法，即定义 `public` 的 `handleException`，返回 `Result`。因为我们要捕获的是所有的异常，所以设置参数 `Exception e`，方法上添加注解 `ExceptionHandler`，说明当前方法是一个异常处理的方法。
+3. 捕获到异常以后使用 `log.error` 打印日志 “程序出错了！e”。
+4. 返回 Result。参数给的是需要前端显示的信息。
