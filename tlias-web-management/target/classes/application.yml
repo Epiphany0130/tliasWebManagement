@@ -14,3 +14,9 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
+aliyun:
+  OSS:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: tlias-web-management-heima
+    region: cn-beijing

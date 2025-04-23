@@ -1231,3 +1231,53 @@ Controller：1. 接收请求（json）。2. 调用 Service。3. 相应结果。
 5. 用 `log.info` 打印日志 “文件上传 OSS，url：url”。
 
 6. 返回 `Result` 并传递 url。
+
+### 程序优化
+
+目前 endpoint、bucketName 和 region 的信息直接写在工具类中，不便于后期维护，可以将一些需要灵活变化的参数，配置在配置文件中，然后通过 `@Value` 注解来注入外部配置的属性。
+
+```yml
+aliyun:
+	OSS:
+		endpoint: https://oss-cn-beijing.aliyuncs.com
+		bucketName: tlias-web-management-heima
+		region: cn-beijing
+```
+
+```java
+@Component
+public class Aliyunossoperator{
+    @Value("${aliyun.oss.endpoint}")
+    private String endpoint;
+    @value("${aliyun.oss.bucketName}")
+    private String bucketName;
+    @Value("${aliyun.oss.region}")
+    private String region;
+}
+```
+
+使用 `@Value` 注解注入配置文件的配置项，如果配置项多，注入繁琐，不便于维护管理和复用。
+
+可以直接使用 `@ConfigurationProperties` 注解将整个配置注入并封装在一个 Java Bean 中，在其他类中如果需要使用就直接将 bean 对象注入，然后调用其 get set 方法就可以了。
+
+```java
+@Data
+@Component
+@ConfigurationProperties(prefix = "aliyun.oss")
+public class AliyunosSProperties {
+    private String endpoint;
+    private String bucketName;
+    private String region;
+}
+```
+
+```java
+@Component
+public class Aliyunossoperator {
+    @Autowired
+    private AliyunosSProperties aliyunosSProperties;
+    public String upload(byte[] content, String originalFilename) throws Exception {
+        String endpoint = aliyunosSProperties.getEndpoint();
+        String bucketName = aliyunOSSProperties.getBucketName();
+```
+
