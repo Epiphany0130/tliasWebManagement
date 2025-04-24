@@ -2,6 +2,7 @@ package com.gyqstd.mapper;
 
 import com.gyqstd.pojo.Clazz;
 import com.gyqstd.pojo.ClazzQueryParam;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
 @Mapper
 public interface ClazzMapper {
     List<Clazz> list(ClazzQueryParam clazzQueryParam);
+
+    void add(Clazz clazz);
 }

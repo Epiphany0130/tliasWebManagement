@@ -8,6 +8,7 @@ import com.gyqstd.service.ClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -29,6 +30,11 @@ public class ClazzServiceImpl implements ClazzService {
         Page<Clazz> p = (Page<Clazz>) clazzList;
         return new PageResult<Clazz>(p.getTotal(), p.getResult());
 
+    }
+
+    @Override
+    public void add(Clazz clazz) {
+        clazzMapper.add(clazz);
     }
 
 }

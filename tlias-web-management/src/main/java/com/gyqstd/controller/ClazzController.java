@@ -5,9 +5,7 @@ import com.gyqstd.pojo.*;
 import com.gyqstd.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author GuYuqi
@@ -28,5 +26,11 @@ public class ClazzController {
         return Result.success(pageResult);
     }
 
+    @PostMapping
+    public Result add(@RequestBody Clazz clazz) {
+        log.info("新增部门：{}", clazz);
+        clazzService.add(clazz);
+        return Result.success();
+    }
 
 }

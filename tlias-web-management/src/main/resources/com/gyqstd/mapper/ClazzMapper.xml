@@ -31,4 +31,9 @@
         </where>
         ORDER BY begin_date DESC
     </select>
+
+    <insert id="add">
+        insert into clazz(name, room, begin_date, end_date, master_id, subject, create_time, update_time) values
+        (#{name}, #{room}, #{beginDate}, #{endDate}, #{masterId}, #{subject}, now(), now())
+    </insert>
 </mapper>
