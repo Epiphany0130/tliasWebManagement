@@ -1674,4 +1674,85 @@ Controller：1. 接收请求（json）。2. 调用 Service。3. 响应结果。
    return Result.error(arr[2] + "已存在");
    ```
 
-   
+# 职位统计
+
+## 根据需求文档
+
+调用 ECHARTS 实现图表统计。
+
+## 根据接口文档
+
+1. 请求路径：`/report/empJobData`
+
+2. 请求方式：`GET`
+
+3. 响应数据样例：
+
+   ```json
+   {
+     "code": 1,
+     "msg": "success",
+     "data": {
+       "jobList": ["教研主管","学工主管","其他","班主任","咨询师","讲师"],
+       "dataList": [1,1,2,6,8,13]
+     }
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行 SQL。
+
+Service：1. 调用 mapper 方法获取职位统计数据。2. 解析数据封装统计结果（JobOption）。
+
+Controller：1. 接收请求。2. 调用 Service。3. 响应结果。
+
+## 开发步骤
+
+1. 定义实体类 `JobOption`，添加 `Date`、`NoArgsConstructor`、`AllArgsConstructor`构造。
+
+2. 定义两个 List 集合，一个是 `jobList` 封装职位列表，另一个是 `dataList` 封装数据列表。
+
+3. 准备 SQL，统计每一种职位对应的人数，并排序
+
+   ```sql
+   select
+   	(case job when job = 1 then '班主任'
+   		when job = 2 then '讲师'
+   		when job = 3 then '学工主管'
+   		when job = 4 then '教研主管'
+   		when job = 5 then '咨询师'
+   		else '其他' end) pos，
+   	count(*) total
+   from emp group by job order by total;
+   ```
+
+4. 编写 EmpMapper，定义接口方法 `countEmpJobData`，返回值是 `List` ，泛型为 `Map<Sting, Object>`。
+
+5. 在 xml 中创建 SQL。
+
+6. 定义 `ReportController`，添加 `Slf4j`、`RequestMapping`、`RestController` 注解。
+
+7. 定义 `ReportService`，和其实现类，并在实现类添加 `Service` 注解。
+
+8. 编写 Controller，定义 `public` 的 `getEmpJobData`，返回值为 `Result`，添加 `GetMapping` 注解，并指定请求路径 `/empJobData`。
+
+9. `log.info` 输出日志“统计员工人数”。
+
+10. 注入 service 并调用 `getEmpJobData` 方法，结果封装在 `JobOption` 中。
+
+11. 返回 `Result` 并传递 `jobOption`。
+
+12. 方法上 `Alt + Enter`，定义方法，进入实现类，实现接口。
+
+13. 注入 mapper 并调用 `contEmpJobData`，返回值用 `List<Map<String, Object>> list` 接收。
+
+14. 组装结果并返回。
+
+    ```java
+    List<Object> jobList = list.stream().map(dataMap -> dataMap.get("pos")).toList();
+    List<Object> dataList = list.stream().map(dataMap -> dataMap.get("total")).toList();
+    return new JobOption(jobList, dataList);
+    ```
+
+    

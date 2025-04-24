@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GuYuqi
@@ -39,4 +40,6 @@ public interface EmpMapper {
     Emp getById(Integer id);
 
     void updateById(Emp emp);
+
+    List<Map<String, Object>> countEmpJobData();
 }
