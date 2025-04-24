@@ -2,6 +2,7 @@ package com.gyqstd.mapper;
 
 import com.gyqstd.pojo.Clazz;
 import com.gyqstd.pojo.ClazzQueryParam;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,4 +21,7 @@ public interface ClazzMapper {
     Clazz getById(Integer id);
 
     void updateById(Clazz clazz);
+
+    @Delete("delete from clazz where id = #{id}")
+    void deleteById(Integer id);
 }

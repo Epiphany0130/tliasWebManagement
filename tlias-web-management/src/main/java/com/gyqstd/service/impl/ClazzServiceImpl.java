@@ -52,4 +52,9 @@ public class ClazzServiceImpl implements ClazzService {
         clazzMapper.updateById(clazz);
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        clazzMapper.deleteById(id);
+    }
+
 }

@@ -47,4 +47,11 @@ public class ClazzController {
         return Result.success();
     }
 
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id) {
+        log.info("根据 ID 删除部门：{}", id);
+        clazzService.deleteById(id);
+        return Result.success();
+    }
+
 }

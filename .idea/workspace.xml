@@ -162,7 +162,7 @@
       <workItem from="1745305837661" duration="2016000" />
       <workItem from="1745365409252" duration="299000" />
       <workItem from="1745452375112" duration="16069000" />
-      <workItem from="1745489123908" duration="704000" />
+      <workItem from="1745489123908" duration="2055000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -356,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745489623829</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="修改班级（数据修改）修改错误">
+      <option name="closed" value="true" />
+      <created>1745490081671</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745490081671</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +412,8 @@
     <MESSAGE value="添加班级" />
     <MESSAGE value="修改班级（数据回显）" />
     <MESSAGE value="修改班级（数据修改）" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改班级（数据修改）" />
+    <MESSAGE value="修改班级（数据修改）修改错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改班级（数据修改）修改错误" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
