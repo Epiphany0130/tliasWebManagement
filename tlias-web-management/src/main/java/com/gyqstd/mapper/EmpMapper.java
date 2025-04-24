@@ -44,4 +44,7 @@ public interface EmpMapper {
     List<Map<String, Object>> countEmpJobData();
 
     List<Map<String, Object>> countEmpGenderData();
+
+    @Select("select name from emp where job = 1")
+    List<Emp> findAll();
 }
