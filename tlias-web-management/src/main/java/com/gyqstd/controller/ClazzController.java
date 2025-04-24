@@ -33,4 +33,11 @@ public class ClazzController {
         return Result.success();
     }
 
+    @GetMapping("/{id}")
+    public Result getInfo(@PathVariable Integer id) {
+        log.info("根据 ID 查询员工信息：{}", id);
+        Clazz clazz = clazzService.getInfo(id);
+        return Result.success(clazz);
+    }
+
 }

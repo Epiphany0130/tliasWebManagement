@@ -12,4 +12,6 @@ public interface ClazzService {
     PageResult<Clazz> page(ClazzQueryParam clazzQueryParam);
 
     void add(Clazz clazz);
+
+    Clazz getInfo(Integer id);
 }

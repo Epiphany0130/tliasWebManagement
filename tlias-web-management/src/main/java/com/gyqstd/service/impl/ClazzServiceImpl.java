@@ -37,4 +37,9 @@ public class ClazzServiceImpl implements ClazzService {
         clazzMapper.add(clazz);
     }
 
+    @Override
+    public Clazz getInfo(Integer id) {
+        return clazzMapper.getById(id);
+    }
+
 }

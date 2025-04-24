@@ -36,4 +36,26 @@
         insert into clazz(name, room, begin_date, end_date, master_id, subject, create_time, update_time) values
         (#{name}, #{room}, #{beginDate}, #{endDate}, #{masterId}, #{subject}, now(), now())
     </insert>
+
+
+    <!--定义ResultMap-->
+    <resultMap id = "clazzResultMap" type = "com.gyqstd.pojo.Clazz">
+        <id column = "id" property = "id"/>
+        <result column = "name" property = "name"/>
+        <result column = "room" property = "room"/>
+        <result column = "begin_date" property = "beginDate"/>
+        <result column = "end_date" property = "endDate"/>
+        <result column = "aster_id" property = "asterId"/>
+        <result column = "subject" property = "subject"/>
+        <result column = "create_time" property = "createTime"/>
+        <result column = "update_time" property = "updateTime"/>
+    </resultMap>
+
+    <select id="getById" resultMap="clazzResultMap">
+        select
+            c.name, c.room, c.begin_date, c.end_date, c.master_id, c.subject
+        from Clazz c
+        where c.id = #{id}
+    </select>
+
 </mapper>

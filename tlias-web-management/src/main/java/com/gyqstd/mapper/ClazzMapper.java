@@ -16,4 +16,6 @@ public interface ClazzMapper {
     List<Clazz> list(ClazzQueryParam clazzQueryParam);
 
     void add(Clazz clazz);
+
+    Clazz getById(Integer id);
 }
