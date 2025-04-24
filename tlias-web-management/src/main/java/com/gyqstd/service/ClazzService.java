@@ -4,6 +4,8 @@ import com.gyqstd.pojo.Clazz;
 import com.gyqstd.pojo.ClazzQueryParam;
 import com.gyqstd.pojo.PageResult;
 
+import java.util.List;
+
 /**
  * @author GuYuqi
  * @version 1.0
@@ -18,4 +20,6 @@ public interface ClazzService {
     void update(Clazz clazz);
 
     void deleteById(Integer id);
+
+    List<Clazz> findAll();
 }

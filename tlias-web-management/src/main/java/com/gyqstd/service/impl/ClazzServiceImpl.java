@@ -57,4 +57,9 @@ public class ClazzServiceImpl implements ClazzService {
         clazzMapper.deleteById(id);
     }
 
+    @Override
+    public List<Clazz> findAll() {
+        return clazzMapper.findAll();
+    }
+
 }
