@@ -161,7 +161,7 @@
       <workItem from="1745305401299" duration="427000" />
       <workItem from="1745305837661" duration="2016000" />
       <workItem from="1745365409252" duration="299000" />
-      <workItem from="1745452375112" duration="317000" />
+      <workItem from="1745452375112" duration="1860000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -299,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745410599437</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="职位统计">
+      <option name="closed" value="true" />
+      <created>1745452866272</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1745452866272</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +348,8 @@
     <MESSAGE value="修改员工（数据修改）" />
     <MESSAGE value="全局异常处理器" />
     <MESSAGE value="DuplicateKeyException" />
-    <option name="LAST_COMMIT_MESSAGE" value="DuplicateKeyException" />
+    <MESSAGE value="职位统计" />
+    <option name="LAST_COMMIT_MESSAGE" value="职位统计" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

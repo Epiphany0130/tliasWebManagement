@@ -1,6 +1,14 @@
+在线讲义
+
+https://heuqqdmbyk.feishu.cn/wiki/LYVswfK4eigRIhkW0pvcqgH9nWd
+
 接口文档
 
 https://heuqqdmbyk.feishu.cn/wiki/GyZVwpRf6ir89qkKtFqc0HlTnhg
+
+文档内的开发步骤仅有 部门管理、员工管理、职位统计、性别统计 的内容，其余课上没讲要求自己实践的内容没有编写开发步骤，班级管理和学员管理开发逻辑和员工管理类似，都是分页的条件查询，信息统计的逻辑和职位、性别统计的逻辑相似，可以参照前面的逻辑实现。
+
+数据准备参照黑马官方提供的讲义和接口文档。
 
 # 工程搭建
 
@@ -1755,4 +1763,69 @@ Controller：1. 接收请求。2. 调用 Service。3. 响应结果。
     return new JobOption(jobList, dataList);
     ```
 
-    
+
+# 性别统计
+
+## 根据需求文档
+
+调用 ECHARTS 实现图表统计。
+
+## 根据接口文档
+
+1. 请求路径：`/report/empGenderData`
+
+2. 请求方式：`GET`
+
+3. 响应数据样例：
+
+   ```json
+   {
+     "code": 1,
+     "msg": "success",
+     "data": [
+       {"name": "男性员工","value": 5},
+       {"name": "女性员工","value": 6}
+     ]
+   }
+   ```
+
+### 三层架构
+
+Mapper：执行 SQL。
+
+Service：1. 调用 mapper 方法获取性别统计数据。2. 解析数据封装统计结果。
+
+Controller：1. 接收请求。2. 调用 Service。3. 响应结果。
+
+## 开发步骤
+
+1. 准备 SQL。
+
+   ```sql
+   select if(gender = 1, '男性员工', '女性员工') name, count(*) value from emp group by gender
+   ```
+
+2. 编写 Controller，定义 `public` 的 `getEmpGenderData`，返回值为 `Result`，添加注解 `GetMapping`，并指定请求路径 `/empGenderData`。
+
+3. 用 `log.info` 打印日志“统计员工性别人数”。
+
+4. 调用 service 的方法，定义方法名为 `getEmpGenderData`，返回值给到 List，泛型为 Map，List 属性名为 `genderList`。
+
+5. 返回 Result，并传递 `genderList`。
+
+6. 方法上 `Alt + Enter`，定义方法，进入实现类，实现方法。
+
+7. 方法内没有逻辑，直接返回 mapper 的方法即可，定义方法名为 `countEmpGenderData`。
+
+8. 方法上 `Alt + Enter`，然后在 xml 中定义 SQL。
+
+   ```xml
+   <select id = "countEmpGenderData" resultType = "java.util.Map">
+       select
+       	if(gender = 1, '男性员工', '女性员工') name,
+       	count(*) value
+       from emp group by gender
+   </select>
+   ```
+
+   
