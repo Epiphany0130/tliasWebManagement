@@ -53,7 +53,7 @@
 
     <select id="getById" resultMap="clazzResultMap">
         select
-            c.name, c.room, c.begin_date, c.end_date, c.master_id, c.subject
+            c.id, c.name, c.room, c.begin_date, c.end_date, c.master_id, c.subject
         from Clazz c
         where c.id = #{id}
     </select>
