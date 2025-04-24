@@ -25,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -162,7 +162,7 @@
       <workItem from="1745305837661" duration="2016000" />
       <workItem from="1745365409252" duration="299000" />
       <workItem from="1745452375112" duration="16069000" />
-      <workItem from="1745489123908" duration="3624000" />
+      <workItem from="1745489123908" duration="5824000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -372,7 +372,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745494143380</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="查询所有班级">
+      <option name="closed" value="true" />
+      <created>1745495765034</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1745495765034</updated>
+    </task>
+    <task id="LOCAL-00028" summary="查询所有班级">
+      <option name="closed" value="true" />
+      <created>1745495924157</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1745495924157</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +438,8 @@
     <MESSAGE value="修改班级（数据修改）" />
     <MESSAGE value="修改班级（数据修改）修改错误" />
     <MESSAGE value="删除班级" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除班级" />
+    <MESSAGE value="查询所有班级" />
+    <option name="LAST_COMMIT_MESSAGE" value="查询所有班级" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

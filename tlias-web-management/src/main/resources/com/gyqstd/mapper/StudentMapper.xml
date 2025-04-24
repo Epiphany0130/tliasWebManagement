@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gyqstd.mapper.StudentMapper">
+    <select id="list" resultType="com.gyqstd.pojo.Student">
+        SELECT
+        id,
+        name,
+        no,
+        gender,
+        phone,
+        id_card,
+        is_college,
+        address,
+        degree,
+        graduation_date,
+        clazz_id,
+        violation_count,
+        violation_score,
+        create_time,
+        update_time,
+        (select name from Clazz where id = student.clazz_id) AS clazzName
+        FROM Student
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="degree != null">
+                AND degree &lt;= #{degree}
+            </if>
+            <if test="clazzId != null">
+                AND clazz_id = #{clazzId}
+            </if>
+        </where>
+    </select>
+</mapper>
