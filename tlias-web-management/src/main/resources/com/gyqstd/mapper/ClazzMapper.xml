@@ -45,7 +45,7 @@
         <result column = "room" property = "room"/>
         <result column = "begin_date" property = "beginDate"/>
         <result column = "end_date" property = "endDate"/>
-        <result column = "aster_id" property = "asterId"/>
+        <result column = "master_id" property = "masterId"/>
         <result column = "subject" property = "subject"/>
         <result column = "create_time" property = "createTime"/>
         <result column = "update_time" property = "updateTime"/>
@@ -57,5 +57,19 @@
         from Clazz c
         where c.id = #{id}
     </select>
+
+    <update id="updateById">
+        update clazz
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="room != null and name != ''">room = #{room},</if>
+            <if test="beginDate != null">begin_date= #{beginDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="masterId != null">master_id = #{masterId},</if>
+            <if test="subject != null">subject = #{subject},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
 
 </mapper>
