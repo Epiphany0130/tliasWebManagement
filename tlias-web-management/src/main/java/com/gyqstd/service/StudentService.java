@@ -5,6 +5,8 @@ import com.gyqstd.pojo.PageResult;
 import com.gyqstd.pojo.Student;
 import com.gyqstd.pojo.StudentQueryParam;
 
+import java.util.List;
+
 /**
  *  @author GuYuqi
  *  @version 1.0
@@ -18,4 +20,6 @@ public interface StudentService {
     Student getInfo(Integer id);
 
     void update(Student student);
+
+    void delete(List<Integer> ids);
 }

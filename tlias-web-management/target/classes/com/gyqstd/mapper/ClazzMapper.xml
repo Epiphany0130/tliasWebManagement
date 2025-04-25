@@ -67,7 +67,7 @@
             <if test="endDate != null">end_date = #{endDate},</if>
             <if test="masterId != null">master_id = #{masterId},</if>
             <if test="subject != null">subject = #{subject},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateTime != null">update_time = now(),</if>
         </set>
         where id = #{id}
     </update>
