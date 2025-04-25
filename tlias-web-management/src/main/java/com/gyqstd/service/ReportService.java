@@ -1,5 +1,6 @@
 package com.gyqstd.service;
 
+import com.gyqstd.pojo.ClazzCountOption;
 import com.gyqstd.pojo.JobOption;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface ReportService {
     JobOption getEmpJobData();
 
     List<Map<String, Object>> getEmpGenderData();
+
+    List<Map<String, Object>> getStudentDegreeData();
+
+    ClazzCountOption getStudentCountData();
 }

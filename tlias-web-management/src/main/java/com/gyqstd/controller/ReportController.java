@@ -1,5 +1,6 @@
 package com.gyqstd.controller;
 
+import com.gyqstd.pojo.ClazzCountOption;
 import com.gyqstd.pojo.JobOption;
 import com.gyqstd.pojo.Result;
 import com.gyqstd.service.ReportService;
@@ -38,5 +39,19 @@ public class ReportController {
         log.info("统计员工性别人数");
         List<Map<String, Object>> genderList = reportService.getEmpGenderData();
         return Result.success(genderList);
+    }
+
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData() {
+        log.info("统计学员学历信息");
+        List<Map<String, Object>> degreeList = reportService.getStudentDegreeData();
+        return Result.success(degreeList);
+    }
+
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData() {
+        log.info("统计班级人数");
+        ClazzCountOption clazzOption = reportService.getStudentCountData();
+        return Result.success(clazzOption);
     }
 }

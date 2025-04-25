@@ -5,6 +5,7 @@ import com.gyqstd.pojo.StudentQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  @author GuYuqi
@@ -22,4 +23,8 @@ public interface StudentMapper {
     void updateById(Student student);
 
     void deleteById(List<Integer> ids);
+
+    List<Map<String, Object>> countStudentDegreeData()
+            ;
+    List<Map<String, Object>> countStudentClazzData();
 }

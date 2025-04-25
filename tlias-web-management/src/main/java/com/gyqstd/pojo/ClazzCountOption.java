@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClazzCountOption {
-    private List clazzList; //职位列表
-    private List dataList; //人数列表
+    private List<String> clazzList; //职位列表
+    private List<Integer> dataList; //人数列表
 }
