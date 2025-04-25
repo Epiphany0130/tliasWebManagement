@@ -30,7 +30,7 @@ public class ClazzController {
 
     @PostMapping
     public Result add(@RequestBody Clazz clazz) {
-        log.info("新增部门：{}", clazz);
+        log.info("新增班级：{}", clazz);
         clazzService.add(clazz);
         return Result.success();
     }

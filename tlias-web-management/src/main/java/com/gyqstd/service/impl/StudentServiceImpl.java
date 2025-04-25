@@ -31,4 +31,9 @@ public class StudentServiceImpl implements StudentService {
         Page<Student> p = (Page<Student>) studentList;
         return new PageResult<Student>(p.getTotal(), p.getResult());
     }
+
+    @Override
+    public void add(Student student) {
+        studentMapper.add(student);
+    }
 }
