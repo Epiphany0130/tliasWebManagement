@@ -39,4 +39,11 @@ public class StudentController {
         Student student = studentService.getInfo(id);
         return Result.success(student);
     }
+
+    @PutMapping
+    public Result update(@RequestBody Student student) {
+        log.info("修改学员：{}", student);
+        studentService.update(student);
+        return Result.success();
+    }
 }

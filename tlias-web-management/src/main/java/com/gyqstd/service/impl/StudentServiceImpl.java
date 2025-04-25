@@ -11,6 +11,7 @@ import com.gyqstd.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -40,5 +41,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getInfo(Integer id) {
         return studentMapper.getById(id);
+    }
+
+    @Override
+    public void update(Student student) {
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.updateById(student);
     }
 }

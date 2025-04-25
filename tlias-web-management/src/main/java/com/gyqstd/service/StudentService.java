@@ -16,4 +16,6 @@ public interface StudentService {
     void add(Student student);
 
     Student getInfo(Integer id);
+
+    void update(Student student);
 }

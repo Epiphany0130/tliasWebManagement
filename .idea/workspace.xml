@@ -82,7 +82,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.TliasWebManagementApplication.executor": "Run",
+    "Spring Boot.TliasWebManagementApplication.executor": "Debug",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/My_study/university/@DevCode/JavaWeb/tlias/tlias-web-management/src/main/java/com/gyqstd/pojo",
@@ -163,7 +163,7 @@
       <workItem from="1745365409252" duration="299000" />
       <workItem from="1745452375112" duration="16069000" />
       <workItem from="1745489123908" duration="6401000" />
-      <workItem from="1745538479908" duration="2527000" />
+      <workItem from="1745538479908" duration="3095000" />
     </task>
     <task id="LOCAL-00001" summary="构建空项目">
       <option name="closed" value="true" />
@@ -405,7 +405,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745540058378</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="添加学生 -&gt; 根据 ID 查询（数据回显）">
+      <option name="closed" value="true" />
+      <created>1745541240685</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1745541240685</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,7 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="工程搭建" />
     <MESSAGE value="查询全部部门数据接口开发" />
     <MESSAGE value="删除部门" />
     <MESSAGE value="添加部门" />
@@ -456,7 +463,8 @@
     <MESSAGE value="删除班级" />
     <MESSAGE value="查询所有班级" />
     <MESSAGE value="添加学生" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加学生" />
+    <MESSAGE value="添加学生 -&gt; 根据 ID 查询（数据回显）" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加学生 -&gt; 根据 ID 查询（数据回显）" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

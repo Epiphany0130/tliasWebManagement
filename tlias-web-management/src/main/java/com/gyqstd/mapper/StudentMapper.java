@@ -18,4 +18,6 @@ public interface StudentMapper {
     void add(Student student);
 
     Student getById(Integer id);
+
+    void updateById(Student student);
 }
