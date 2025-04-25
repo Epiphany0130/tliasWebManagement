@@ -18,4 +18,11 @@ public interface DeptService {
     Dept getById(Integer id);
 
     void update(Dept dept);
+
+    /**
+     * 检查部门下是否有员工
+     * @param id 部门ID
+     * @return 如果有员工返回true，否则返回false
+     */
+    boolean hasEmployees(Integer id);
 }

@@ -1,6 +1,7 @@
 package com.gyqstd.service.impl;
 
 import com.gyqstd.mapper.DeptMapper;
+import com.gyqstd.mapper.EmpMapper;
 import com.gyqstd.pojo.Dept;
 import com.gyqstd.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class DeptServiceImpl implements DeptService {
 
     @Autowired
     private DeptMapper deptMapper;
+
+    @Autowired
+    private EmpMapper empMapper;
 
     @Override
     public List<Dept> findAll() {
@@ -45,5 +49,10 @@ public class DeptServiceImpl implements DeptService {
     public void update(Dept dept) {
         dept.setUpdateTime(LocalDateTime.now());
         deptMapper.update(dept);
+    }
+
+    @Override
+    public boolean hasEmployees(Integer id) {
+        return empMapper.countByDeptId(id) > 0;
     }
 }

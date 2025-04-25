@@ -36,6 +36,12 @@ public class DeptController {
     public Result delete(Integer id) {
 //        System.out.println("根据 ID 删除部门" + id);
         log.info("根据 ID 删除部门: {}", id);
+        
+        // 检查部门下是否有员工
+        if (deptService.hasEmployees(id)) {
+            return Result.error("对不起，当前部门下有员工，不能直接删除！");
+        }
+        
         deptService.deleteById(id);
         return Result.success();
     }

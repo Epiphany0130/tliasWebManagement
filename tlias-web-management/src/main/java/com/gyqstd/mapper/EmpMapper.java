@@ -47,4 +47,12 @@ public interface EmpMapper {
 
     @Select("select name from emp where job = 1")
     List<Emp> findAll();
+
+    /**
+     * 统计部门下的员工数量
+     * @param deptId 部门ID
+     * @return 员工数量
+     */
+    @Select("select count(*) from emp where dept_id = #{deptId}")
+    int countByDeptId(Integer deptId);
 }
