@@ -14,4 +14,6 @@ public interface StudentService {
     PageResult<Student> page(StudentQueryParam studentQueryParam);
 
     void add(Student student);
+
+    Student getInfo(Integer id);
 }

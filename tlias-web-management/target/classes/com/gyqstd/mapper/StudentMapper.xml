@@ -37,16 +37,41 @@
 
     <insert id="add">
         insert into student(name, no, gender, phone, id_card, is_college
-                            <if test="address != null">, address</if>
-                            <if test="degree != null">, degree</if>
-                            <if test="graduationDate != null">, graduation_date</if>
-                            <if test="clazzId != null">, clazz_id</if>,
-                            create_time, update_time)
+        <if test="address != null">, address</if>
+        <if test="degree != null">, degree</if>
+        <if test="graduationDate != null">, graduation_date</if>
+        <if test="clazzId != null">, clazz_id</if>,
+        create_time, update_time)
         values (#{name}, #{no}, #{gender}, #{phone}, #{idCard}, #{isCollege}
-                <if test="address != null">, #{address}</if>
-                <if test="degree != null">, #{degree}</if>
-                <if test="graduationDate != null">, #{graduationDate}</if>
-                <if test="clazzId != null">, #{clazzId}</if>
-                , now(), now())
+        <if test="address != null">, #{address}</if>
+        <if test="degree != null">, #{degree}</if>
+        <if test="graduationDate != null">, #{graduationDate}</if>
+        <if test="clazzId != null">, #{clazzId}</if>
+        , now(), now())
     </insert>
+
+    <!--定义ResultMap-->
+    <resultMap id="studentResultMap" type="com.gyqstd.pojo.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="no" property="no"/>
+        <result column="gender" property="gender"/>
+        <result column="phone" property="phone"/>
+        <result column="id_card" property="idCard"/>
+        <result column="is_college" property="isCollege"/>
+        <result column="address" property="address"/>
+        <result column="degree" property="degree"/>
+        <result column="graduation_date" property="graduationDate"/>
+        <result column="clazz_id" property="clazzId"/>
+        <result column="violation_count" property="violationCount"/>
+        <result column="violation_score" property="violationScore"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="getById" resultMap="studentResultMap">
+        select id, name, no, gender, phone, id_card, is_college, address, degree, graduation_date, clazz_id, violation_count, violation_score, create_time, update_time
+        from Student
+        where id = #{id}
+    </select>
 </mapper>

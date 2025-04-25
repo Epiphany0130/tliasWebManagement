@@ -37,21 +37,21 @@ public class ClazzController {
 
     @GetMapping("/{id}")
     public Result getInfo(@PathVariable Integer id) {
-        log.info("根据 ID 查询员工信息：{}", id);
+        log.info("根据 ID 查询班级信息：{}", id);
         Clazz clazz = clazzService.getInfo(id);
         return Result.success(clazz);
     }
 
     @PutMapping
     public Result update(@RequestBody Clazz clazz) {
-        log.info("修改部门：{}", clazz);
+        log.info("修改班级：{}", clazz);
         clazzService.update(clazz);
         return Result.success();
     }
 
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
-        log.info("根据 ID 删除部门：{}", id);
+        log.info("根据 ID 删除班级：{}", id);
         clazzService.deleteById(id);
         return Result.success();
     }
