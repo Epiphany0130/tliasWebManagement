@@ -10,6 +10,8 @@ https://heuqqdmbyk.feishu.cn/wiki/GyZVwpRf6ir89qkKtFqc0HlTnhg
 
 数据准备参照黑马官方提供的讲义和接口文档。
 
+**有关登录的会话技术、JWT 令牌、过滤器、拦截器的笔记也在本文档中。**
+
 # 工程搭建
 
 1. 创建 Spring Boot 工程，并引入 web 开发起步依赖、mybatis、mysql 驱动、lombok。
@@ -1707,7 +1709,7 @@ Controller：1. 接收请求（json）。2. 调用 Service。3. 响应结果。
    }
    ```
 
-### 三层架构
+## 三层架构
 
 Mapper：执行 SQL。
 
@@ -1789,7 +1791,7 @@ Controller：1. 接收请求。2. 调用 Service。3. 响应结果。
    }
    ```
 
-### 三层架构
+## 三层架构
 
 Mapper：执行 SQL。
 
@@ -1828,4 +1830,249 @@ Controller：1. 接收请求。2. 调用 Service。3. 响应结果。
    </select>
    ```
 
+
+# 登录认证
+
+## 根据需求文档
+
+1. 用户名和密码都输入正确，登录成功，否则，登录失败。
+2. 登录的本质就是根据用户名和密码查询员工信息。
+
+## 根据接口文档
+
+1. 请求路径：`/login`
+
+2. 请求路径：`/POST`
+
+3. 请求参数样例：
+
+   ```json
+   {
+       "username": "jinyong",
+       "password": "123456"
+   }
+   ```
+
+4. 响应参数样例：
+
+   ```json
+   {
+       "code": 1,
+       "msg": "success",
+       "data": {
+           "id": 2,
+           "username": "songjiang",
+           "name": "宋江",
+           "token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJzb25namlhbmciLCJleHAiOjE2OTg3MDE3NjJ9.w06EkRXTep6SrvMns3w5RKe79nxauDe7fdMhBLK-MKY"
+       }
+   }
+   ```
+
+## 三层架构
+
+Mapper：执行 SQL。
+
+Service：1. 根据用户名和密码查询员工信息。2. 判定，组装数组并返回。
+
+Controller：1. 接收请求（用户名，密码）。2. 调用 Service。3. 响应结果。
+
+## 开发步骤
+
+1. 定义新的实体类封装响应数据，定义实体类为 `LoginInfo`，声明四个属性。并添加 `Data`、`All...`、`No...` 注解。
+
+   ```java
+   private Integer id;
+   private String username;
+   private String name;
+   private String token;
+   ```
+
+2. 创建新的 `Controller`，定义类名为 `LoginController`，添加 `Slf4j`、`RestController` 注解。
+
+3. 定义 `public` 的方法 `login` 返回值为 `Result`。添加 `PostMapping` 注解，并指定路径为 `/login`。前端传来的参数可以封装在 `Emp` 实体类中，所以定义参数 `Emp` 的 `emp`，并添加 `RequestBody`。
+
+4. 通过 `log.info` 打印日志“登录：emp”。
+
+5. 注入 `EmpService`，并调用其方法，定义方法名为 `login`，并传递 emp。返回 `LoginInfo` 的对象 `info`。
+
+6. 判断，如果 `info != null`，说明登录成功，返回 `Result.success`，并传递 `info`。
+
+7. 否则返回 `Result.error`，传递字符串“用户或密码错误”。
+
+8. 方法上 `Alt + Enter`，定义方法，进入实现类（`Emp` 的实现 Service），实现方法。
+
+9. 调用 Mapper 的方法，查询员工信息，定义方法名为 `selectByUsernameAndPassword`，并传递 `emp`，返回员工的信息用 `Emp` 的 `e` 接收。
+
+10. 判断是否存在这个员工，如果存在则登录成功，也就是判断 `e != null`，如果成立，就用 `log.info` 打印日志“登录成功，员工信息：e”（添加注解），然后返回对象，令牌目前设置为空字符串。
+
+    ```java
+    return new LoginInfo(e.getIn(), e.getUsername(), e.getName, "");
+    ```
+
+11. 如果上面的条件不成立直接返回 `null`。
+
+12. 方法名上 `Alt + Enter`，在 Mapper 中定义方法。添加 Select 注解执行 SQL。
+
+    ```xml
+    @select("select id, username, name from emp where username = #{username} and password = #{password}")
+    ```
+
+目前已经完成的登录界面的接口开发，但是未登录的情况下，也可以直接访问员工管理、部门管理等内容。
+
+# 会话技术
+
+会话：用户打开浏览器，访问 web 服务器的资源，会话建立，直到有一方断开连接，会话结束。在一次会话中可以包含多次请求和响应。
+
+会话跟踪：一种维护浏览器状态的方法，服务器需要识别多次请求是否来自于同一浏览器，以便在同一次会话的多次请求间共享数据。
+
+会话跟踪方案：
+
+​	客户端会话跟踪技术：Cookie
+
+​	服务端会话跟踪技术：Session
+
+​	令牌技术
+
+## Cookie
+
+优点：HTTP 协议中支持的技术。 
+
+缺点：
+
+​	移动端 APP 无法使用 Cookie。
+
+​	不安全，用户可以自己禁用 Cookie。
+
+​	Cookie 不能跨域。
+
+## Seesion
+
+优点：存储在服务端，安全。
+
+缺点：
+
+​	服务器集群环境下无法直接使用 Session。
+
+​	Cookie 的缺点。
+
+## 令牌
+
+主流方案。
+
+优点：
+
+​	支持 PC 端、移动端。
+
+​	解决集群环境下的认证问题。
+
+​	减轻服务器端存储压力。
+
+缺点：需要自己实现。
+
+# JWT令牌
+
+全称：JSON Web Token。
+
+定义了一种简洁的、自包含的格式，用于在通信双方以 json 数据格式安全的传输信息。
+
+## 组成
+
+第一部分：Header（头），记录令牌类型、签名算法等。例如：{"alg"："HS256"，"type"："JwT"}
+
+第二部分：Payload（有效载荷），携带一些自定义信息、默认信息等。例如：{"id":"1"，"username":"Tom"}
+
+第三部分：Signature（签名），防止 Token 被篡改、确保安全性。将 header、payLoad 融入，并加入指定秘钥，通过指定签名算法计算而来。
+
+## 生成 / 解析
+
+1. 引入 JWT 依赖。
+
+   ```xml
+   <dependency>
+     <groupId>io.jsonwebtoken</groupId>
+     <artifactId>jjwt</artifactId>
+     <version>0.9.1</version>
+   </dependency>
+   ```
+
+2. 调用官方提供的工具类 Jwts、来生成或解析 jwt 令牌。
+
+## JWT 令牌解析（校验）什么情况会报错
+
+1. JWT 令牌被篡改。
+2. JWT 令牌失效。
+
+## 注意事项
+
+JWT 校验时使用的签名秘钥，必必须和生成 JWT 令牌时使用的秘钥是配套的。
+
+# 生成令牌
+
+1. 定义 JWT 令牌操作工具类。
+
+   ```
+   请帮我基于如下单元测试方法，改造成一个JWT令牌操作的工具类，类名：JwtUtils，具体要求如下：
+   1．工具类中有两个方法，一个方法生成令牌，另一个是解析令牌。
+   2.生成令牌时使用的秘钥，和测试类中的一致即可。
+   3.令牌的过期时间设置12小时。
+   原始的测试类的代码如下：
    
+   package com.itheima;
+   
+   import io.jsonwebtoken.Claims;
+   import io.jsonwebtoken.Jwts;
+   import io.jsonwebtoken.SignatureAlgorithm;
+   import org.junit.jupiter.api.Test;
+   
+   import java.util.Date;
+   import java.util.HashMap;
+   import java.util.Map;
+   
+   public class JwtTest {
+   
+   
+       /**
+        * 生成JWT令牌 - Jwts.builder()
+        */
+       @Test
+       public void testGenerateJwt(){
+           Map<String, Object> dataMap = new HashMap<>();
+           dataMap.put("id", 1);
+           dataMap.put("username", "admin");
+   
+           String jwt = Jwts.builder()
+                   .signWith(SignatureAlgorithm.HS256, "aXRoZWltYQ==") //指定加密算法, 秘钥
+                   .addClaims(dataMap) //添加自定义信息
+                   .setExpiration(new Date(System.currentTimeMillis() + 60 * 1000)) //设置过期时间
+                   .compact();//生成令牌
+           System.out.println(jwt);
+       }
+   
+       /**
+        * 解析JWT令牌
+        */
+       @Test
+       public void testParseJWT(){
+           String token = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImV4cCI6MTczMjQzOTc3OH0.6VO9nIGo7UaqzEfQ3F9CT7M1JvSTD1r3Gfp_Lj41a3Q";
+           Claims claims = Jwts.parser()
+                   .setSigningKey("aXRoZWltYQ==") //指定秘钥
+                   .parseClaimsJws(token) //解析令牌
+                   .getBody(); //获取自定义信息
+           System.out.println(claims);
+       }
+   
+   }
+   
+   ```
+
+2. 登录完成后，调用工具类生成 JWT 令牌，并返回。即在 Service 中，`if(e != null)` 中，生成令牌，直接调用工具类中的 `generateToken` 方法，返回值用 String 接收。需要传递一个 Map，所以先构建一个 Map，并存储 `id` 和 `username` 信息。
+
+   ```java
+   Map<String，Object> claims = new HashMap<>();
+   claims.put("id", e.getId());
+   claims.put("username", e.getUsername());
+   String jwt = JwtUtils.generateToken(claims);
+   ```
+
+# 过滤器 Filter
+

@@ -4,11 +4,10 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.gyqstd.mapper.EmpExprMapper;
 import com.gyqstd.mapper.EmpMapper;
-import com.gyqstd.pojo.Emp;
-import com.gyqstd.pojo.EmpExpr;
-import com.gyqstd.pojo.EmpQueryParam;
-import com.gyqstd.pojo.PageResult;
+import com.gyqstd.pojo.*;
 import com.gyqstd.service.EmpService;
+import com.gyqstd.utils.JwtUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +15,15 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GuYuqi
  * @version 1.0
  */
+@Slf4j
 @Service
 public class EmpServiceImpl implements EmpService {
 
@@ -100,6 +102,20 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public List<Emp> findAll() {
         return empMapper.findAll();
+    }
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        Emp e = empMapper.selectByUsernameAndPassword(emp);
+        if(e != null) {
+            log.info("登录成功，员工信息：{}", e);
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", e.getId());
+            claims.put("username", e.getUsername());
+            String jwt = JwtUtils.generateToken(claims);
+            return new LoginInfo(e.getId(), e.getUsername(), e.getName(), jwt);
+        }
+        return null;
     }
 
 }

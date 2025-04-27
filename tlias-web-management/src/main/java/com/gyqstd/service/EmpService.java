@@ -2,6 +2,7 @@ package com.gyqstd.service;
 
 import com.gyqstd.pojo.Emp;
 import com.gyqstd.pojo.EmpQueryParam;
+import com.gyqstd.pojo.LoginInfo;
 import com.gyqstd.pojo.PageResult;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,4 +26,6 @@ public interface EmpService {
     void update(Emp emp);
 
     List<Emp> findAll();
+
+    LoginInfo login(Emp emp);
 }
