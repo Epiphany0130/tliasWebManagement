@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="678eeb90-435d-4f70-a645-38daec6120c4" name="更改" comment="学生数据统计">
+    <list default="true" id="678eeb90-435d-4f70-a645-38daec6120c4" name="更改" comment="异常处理测试">
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/SessionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/pojo/LoginInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/utils/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/DeptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/DeptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/DeptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/DeptService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/DeptServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/DeptServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/EmpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/EmpService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/EmpServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/EmpServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/controller/DeptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/controller/DeptController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/mapper/EmpMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/mapper/EmpMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/DeptService.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/DeptService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/EmpService.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/EmpService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/DeptServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/DeptServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/EmpServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/EmpServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias.md" beforeDir="false" afterPath="$PROJECT_DIR$/tlias.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,43 +78,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.TliasWebManagementApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/My_study/university/@DevCode/JavaWeb/tlias/tlias-web-management/src/main/java/com/gyqstd/pojo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.TliasWebManagementApplication.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/guyuqi/Documents/@DevCode/JAVA/tliasWebManagement/tlias-web-management/src/main/java/com/gyqstd/controller",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "Errors",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller" />
       <recent name="D:\My_study\university\@DevCode\JavaWeb\tlias\tlias-web-management\src\main\java\com\gyqstd\pojo" />
       <recent name="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/utils" />
       <recent name="D:\My_study\university\@DevCode\JavaWeb\tlias\tlias-web-management\src\main\resources" />
@@ -425,7 +436,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745568175776</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="异常处理测试">
+      <option name="closed" value="true" />
+      <created>1745578937137</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1745578937137</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加部门" />
     <MESSAGE value="数据回显" />
     <MESSAGE value="数据修改" />
     <MESSAGE value="员工管理框架搭建" />
@@ -476,7 +494,8 @@
     <MESSAGE value="添加学生 -&gt; 根据 ID 查询（数据回显）" />
     <MESSAGE value="修改学生（数据修改）" />
     <MESSAGE value="学生数据统计" />
-    <option name="LAST_COMMIT_MESSAGE" value="学生数据统计" />
+    <MESSAGE value="异常处理测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="异常处理测试" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
