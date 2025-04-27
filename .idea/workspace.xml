@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678eeb90-435d-4f70-a645-38daec6120c4" name="更改" comment="登录校验（生成 JWT 令牌）">
-      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/controller/SessionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/pojo/LoginInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/utils/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/filter/TokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/interceptor/TokenInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/mapper/EmpMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/EmpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/EmpService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/EmpServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/service/impl/EmpServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/controller/DeptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/controller/DeptController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/mapper/EmpMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/mapper/EmpMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/DeptService.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/DeptService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/EmpService.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/EmpService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/DeptServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/DeptServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/EmpServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/service/impl/EmpServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/TliasWebManagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/src/main/java/com/gyqstd/TliasWebManagementApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/TliasWebManagementApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/tlias-web-management/target/classes/com/gyqstd/TliasWebManagementApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tlias.md" beforeDir="false" afterPath="$PROJECT_DIR$/tlias.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -452,7 +443,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745720041165</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="登录校验（生成 JWT 令牌）">
+      <option name="closed" value="true" />
+      <created>1745731356898</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1745731356898</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

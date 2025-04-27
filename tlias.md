@@ -2076,3 +2076,212 @@ JWT 校验时使用的签名秘钥，必必须和生成 JWT 令牌时使用的�
 
 # 过滤器 Filter
 
+概念：Filter 过滤器，是 JavaWeb 三大组件（ServLet、Filter、Listener)之一。
+
+过滤器可以把对资源的请求拦截下来，从而实现一些特殊的功能。
+
+过滤器一般完成一些通用的操作，比如：登录校验、统一编码处理、敏感字符处理等。
+
+## 开发步骤
+
+定义：定义一个类实现 Filter 接口（init、doFilter、destroy）。
+
+配置：
+
+```java
+@WebFilter(urlPatterns="/*")
+@ServletComponentScan
+```
+
+## 注意事项
+
+如果过滤器中不执行放行操作，过滤器拦截到请求之后，就不会访问对应的资源。
+
+放行：`chain.doFilter(request, response)`。
+
+## 放行流程
+
+1. 执行放行前逻辑。
+2. 放行。
+3. 进入资源。
+4. 执行放行后逻辑。
+
+## 拦截路径
+
+| 拦截路径     | urlPatterns 值 | 含义                                |
+| ------------ | -------------- | ----------------------------------- |
+| 拦截具体路径 | /login         | 只有访问 /login 路径时，才会被拦截  |
+| 目录拦截     | /emps          | 访问 /emps 下的所有资源，都会被拦截 |
+| 拦截所有     | /*             | 访问所有资源，都会被拦截            |
+
+## 过滤器链
+
+一个 web 应用中，可以配置多个过滤器，这多个过滤器就形成了一个过滤器链。
+
+顺序：注解配置的 Filter，优先级是按照过滤器类名（字符串）的自然排序。
+
+```
+Filter1.放行前 -> Filter1.放行 -> Filter2.放行前 -> Filter2.放行 -> ... -> 资源 -> ... -> Filter2.放行后 -> Filter1.放行后
+```
+
+# 令牌校验 Filter
+
+## 核心逻辑
+
+1. 接到请求获取其请求路径。
+2. 判断是否为登录请求，如果是，执行 7，如果不是，继续执行。
+3. 获取请求头 token。
+4. 判断是否有 token，如果有，继续执行，如果没有，执行 6。
+5. 解析 token，如果成功，执行 7，如果失败，执行 6。
+6. 相应 401。
+7. 放行。
+
+## 开发步骤
+
+1. 将 `servletRequest` 和 `servletResponse` 强转成 `HttpServletRequest` 和 `HttpServletResponse`。
+
+2. 获取请求路径。
+
+   ```java
+   String requestURI = request.getRequestURI();
+   ```
+
+3. 判断是否为登录请求，如果是打印日志并放行。
+
+   ```java
+   if(requestURI.contains("/login")) {
+               log.info("登录请求，放行");
+               filterChain.doFilter(request, response);
+               return;
+           }
+   ```
+
+4. 获取请求头中的 token。
+
+   ```java
+   String token = request.getHeader("token");
+   ```
+
+5. 判断 token 是否存在，如果不存在，说明用户没有登录，打印日志并返回错误信息（响应 401）
+
+   ```java
+   if(token == null || token.isEmpty()) {
+               log.info("令牌为空，响应 401");
+               response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+               return;
+           }
+   ```
+
+6. 如果 token 存在，校验令牌，校验的时候 try-catch，因为如果校验失败，就会报异常，这时候要返回错误信息（响应 401）。
+
+   ```java
+   try {
+               JwtUtils.parseToken(token);
+           } catch (Exception e) {
+               log.info("令牌非法，响应 401");
+               response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+               return;
+           }
+   ```
+
+7. 校验通过，放行。
+
+   ```java
+   filterChain.doFilter(request, response);
+   ```
+
+8. 添加注解。
+
+   ```java
+   @WebFilter(urlPatterns = "/*") 
+   ```
+
+# 拦截器（Interceptor）
+
+是一种动态拦截方法调用的机制，类似于过滤器。Spring 框架中提供的，主要用来动态拦截控制器方法的执行。
+
+作用：拦截请求，在指定的方法调用前后，根据业务需要执行预先设定的代码。
+
+## 使用步骤
+
+1. 定义：实现 HandlerInterceptor 接口。
+2. 配置：定义一个配置类实现 webMvcConfigurer 接口，注册拦截器（/**）。
+
+## 拦截路径
+
+`addPathPatterns`：需要拦截哪些资源。
+
+`excludePathPatterns`：不需要拦截哪些资源。
+
+| 拦截路径  | 含义                  | 举例                                                  |
+| --------- | --------------------- | ----------------------------------------------------- |
+| /*        | 一级路径              | 能匹配 /depts，/emps，/login，不能匹配 /depts/1       |
+| /**       | 任意级路径            | 能匹配 /depts，/depts/1，/depts/1/2                   |
+| /depts/*  | /depts 下的一级路径   | 能匹配 /depts/1，不能匹配 /depts/1/2，/depts          |
+| /depts/** | /depts 下的任意级路径 | 能匹配 /depts，/depts/1，/depts/1/2，不能匹配 /emps/1 |
+
+## 执行流程
+
+Filter -> Interceptor -> 资源 -> Interceptor -> Filter。
+
+## Filter 和 Interceptor 的区别
+
+接口规范不同：过滤器需要实现 Filter 接口，而拦截器需要实现 HandlerInterceptor 接口。
+
+拦截范围不同：过滤器 Filter 会拦截所有的资源，而 Interceptor 只会拦截 Spring 环境中的资源。
+
+# 令牌校验 Interceptor
+
+逻辑和上面 Filter 一样。所以赋值过来更改错误的地方就可以了。
+
+```java
+package com.gyqstd.interceptor;
+
+import com.gyqstd.utils.JwtUtils;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+@Slf4j
+public class TokenInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        // 1. 获取请求路径
+        String requestURI = request.getRequestURI();
+
+        // 2. 判断是否为登录请求
+        if(requestURI.contains("/login")) {
+            log.info("登录请求，放行");
+            return true;
+        }
+
+        // 3. 获取请求头中的 token
+        String token = request.getHeader("token");
+
+        // 4. 判断 token 是否存在，如果不存在，说明用户没有登录，返回错误信息（响应 401）
+        if(token == null || token.isEmpty()) {
+            log.info("令牌为空，响应 401");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return false;
+        }
+
+        // 5. 如果 token 存在，校验令牌，如果校验失败，返回错误信息（响应 401）
+        try {
+            JwtUtils.parseToken(token);
+        } catch (Exception e) {
+            log.info("令牌非法，响应 401");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return false;
+        }
+
+
+        // 6. 校验通过，放行
+        log.info("令牌合法，放行");
+        return true;
+    }
+}
+```
+
+我们可以将登录的请求用 `excludePathPatterns` 定义，这样就可以把 1、2 步省略。
